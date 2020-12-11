@@ -36,7 +36,8 @@
                 "glob": "**/*.svg",
                 "input": "dist/libs/ui/dist/nxlp/icons",
                 "output": "icons"
-              }
+              },
+              "apps/web/src/manifest.webmanifest"
             ],
             "styles": ["apps/web/src/styles.scss"],
             "scripts": []
@@ -68,7 +69,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/web/ngsw-config.json"
             }
           }
         },
