@@ -42,6 +42,8 @@
     "@angular/platform-browser-dynamic": "^10.1.0",
     "@angular/router": "^10.1.0",
     "@angular/service-worker": "^10.1.0",
+    "@nrwl/angular": "10.4.1",
+    "firebase": "^8.2.0",
     "marked": "^1.2.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
