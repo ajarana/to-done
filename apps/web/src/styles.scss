@@ -8,27 +8,3 @@
 a {
   color: var(--color-blue);
 }
-
-// Sample page css
-code {
-  background-color: rgba(var(--color-purple-rgb), 0.1);
-  border-radius: 4px;
-  border: 1px solid var(--color-purple);
-  color: var(--color-purple);
-  padding: 0 4px;
-}
-
-pre {
-  background-color: rgba(var(--color-purple-rgb), 0.1);
-  padding: 12px;
-  border-radius: 4px;
-  border: 1px solid var(--color-purple);
-
-  code {
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    border: none;
-  }
-}
-// End: Sample page css
