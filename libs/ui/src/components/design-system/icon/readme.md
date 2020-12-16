@@ -16,6 +16,21 @@
 | `size`      | `size`       | The size of the icon: xxs through xl                                                        | `"l" \| "m" \| "s" \| "xl" \| "xs"`                                                                                                                                                                                                                                                        | `undefined` |
 
 
+## Dependencies
+
+### Used by
+
+ - [date-selector](../../date-selector)
+ - [to-done-header](../../to-done-header)
+
+### Graph
+```mermaid
+graph TD;
+  date-selector --> tdn-ui-icon
+  to-done-header --> tdn-ui-icon
+  style tdn-ui-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

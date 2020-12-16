@@ -5,6 +5,17 @@
 
 @import './css/reset';
 
+body {
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+
 a {
   color: var(--color-blue);
+}
+
+:root {
+  --gutter: 0 25px;
+  --section-heading-font-size: 12px;
 }

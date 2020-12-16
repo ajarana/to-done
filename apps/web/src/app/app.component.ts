@@ -12,6 +12,9 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   async ngOnInit() {
+    // TODO: Sign in with different authentication method to enable users to access their data across different devices. 
+    // TODO: Figure out a workflow to allow users to work offline, and sync their data once they're back online.
+
     const {
       firebaseConfig = {}
     } = environment;
