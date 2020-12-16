@@ -21,12 +21,14 @@
 ### Used by
 
  - [date-selector](../../date-selector)
+ - [task-form](../../task-form)
  - [to-done-header](../../to-done-header)
 
 ### Graph
 ```mermaid
 graph TD;
   date-selector --> tdn-ui-icon
+  task-form --> tdn-ui-icon
   to-done-header --> tdn-ui-icon
   style tdn-ui-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```

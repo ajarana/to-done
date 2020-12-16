@@ -24,7 +24,7 @@ export class TaskForm {
   dueDate: string;
   labelsSelected: Array<any> = [];
 
-  @State() file: string;
+  @State() file: File;
 
   @State() previewSrc: string;
 
@@ -98,7 +98,7 @@ export class TaskForm {
     this.createPreview(file);
   }
 
-  createPreview(file) {      
+  createPreview(file: File) {      
     if (!file.type.startsWith('image/')) return;
 
     const reader = new FileReader();
@@ -114,6 +114,18 @@ export class TaskForm {
     this.taskNameError = !this.taskName;
   }
 
+  getFileSize(size: number) {
+    if(size < 1024) {
+      return size + 'bytes';
+    } 
+    else if(size >= 1024 && size < 1048576) {
+      return (size / 1024).toFixed(1) + 'kB';
+    } 
+    else if(size >= 1048576) {
+      return (size / 1048576).toFixed(1) + 'MB';
+    }
+  }
+
   render() {
     const taskNameWrapperClasses = classNames([
       "task-form-section",
@@ -122,30 +134,72 @@ export class TaskForm {
       }
     ]);
 
+    const fancyUploadClasses = classNames([
+      "fancy-upload",
+      {
+        "uploaded": this.file
+      }
+    ]);
+
+    const FancyUploadContents = (this.file) ? 
+    <div>
+      <p>Success! <span>{this.file.name}</span> selected with size <span class="file-size">{this.getFileSize(this.file.size)}</span></p>
+
+      <button
+        type="button"
+        onClick={() => this.clearFile()}
+      >Clear Selection</button>
+    </div>
+    :
+    <div>
+      <tdn-ui-icon name="upload" />
+
+      <label class="section-heading file-upload-label" htmlFor="fileUpload">Click to upload</label>
+
+      <input 
+        id="fileUpload"
+        type="file"
+        accept="image/*"
+        onChange={e => this.onFileSelection(e)}
+        ref={el => this.fileInput = el as HTMLInputElement}
+      />
+    </div>;
+
     return (
       <form class="task-form">
         <section
           class={taskNameWrapperClasses}
         >
           <label class="section-heading" htmlFor="taskName">TASK NAME*</label>
+
           <input 
             id="taskName"
             value={this.taskName}
             onInput={e => this.handleTaskName(e)}
             onBlur={() => this.validateTaskName()}
-            placeholder="Turn my work in on time"
+            placeholder="e.g. Turn work in on time"
           />
+
+          {(this.taskNameError) &&
+            <p>Please enter a valid name.</p>
+          }
         </section>
 
-        <section>
-          <label class="section-heading">THUMBNAIL</label>
+        <section
+          class="task-form-section"
+        >
+          <h3 class="section-heading">THUMBNAIL</h3>
 
-          <input 
-            type="file"
-            accept="image/*"
-            onChange={e => this.onFileSelection(e)}
-            ref={el => this.fileInput = el as HTMLInputElement}
-          />
+          <div 
+            class={fancyUploadClasses}
+          >
+            {/* <img 
+              class="preview-image"
+              src={this.previewSrc}
+            /> */}
+
+            {FancyUploadContents}
+          </div>
 
           <div
             class="drop-zone"
@@ -153,25 +207,19 @@ export class TaskForm {
             onDragOver={e => this.onDragOver(e)}
             onDrop={e => this.onDrop(e)}
           ></div>
-
-          {/* <img 
-            width="100"
-            height="100"
-            src={this.previewSrc}
-          /> */}
-
-          <button
-            type="button"
-            onClick={() => this.clearFile()}
-          >Clear</button>
         </section>
 
-        <section>
+        <section
+          class="task-form-section"
+        >
           <label class="section-heading" htmlFor="description">DESCRIPTION</label>
           <textarea 
             id="description"
             value={this.description}
             onInput={e => this.handleDescription(e)}
+            spellcheck={false}
+            maxLength={100}
+            placeholder="e.g. Todo app completion"
           />
         </section>
 
@@ -181,12 +229,17 @@ export class TaskForm {
 
         <date-selector></date-selector>
 
-        <section>
+        <section
+          class="task-form-section"
+        >
           <label class="section-heading" htmlFor="notes">NOTES</label>
           <textarea 
             id="notes"
             value={this.notes}
             onInput={e => this.handleNotes(e)}
+            spellcheck={false}
+            maxLength={100}
+            placeholder="e.g. Make sure you're familiar with the tools"
           />
         </section>
 

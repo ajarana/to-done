@@ -23,12 +23,14 @@
 
 ### Depends on
 
+- [tdn-ui-icon](../design-system/icon)
 - [task-labels](../task-labels)
 - [date-selector](../date-selector)
 
 ### Graph
 ```mermaid
 graph TD;
+  task-form --> tdn-ui-icon
   task-form --> task-labels
   task-form --> date-selector
   task-labels --> task-label-modal

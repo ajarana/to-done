@@ -9,12 +9,18 @@ tdn-ui-icon {
 
 header {
   border-bottom: 1px solid var(--color-neutral-50);
+  background: var(--color-neutral-100);
 
   .copy {
     font-size: 16px;
+    margin: 0 0 0 18px;
   }
 
   .container {
     margin: var(--gutter);
+    padding-top: 23px;
+    padding-bottom: 23px;
+    display: flex;
+    align-items: center;
   }
 }

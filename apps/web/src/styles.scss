@@ -5,6 +5,19 @@
 
 @import './css/reset';
 
+:root {
+  --gutter: 0 25px;
+  --section-heading-font-size: 12px;
+  --input-text-font-size: 14px;
+  --input-padding: 8.5px 16.5px 9.5px;
+  --input-border-radius: 4px;
+  --fancy-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.04);
+  --button-padding: 8px 20px 9px;
+  --default-box-sizing: border-box;
+
+  background: var(--color-neutral-90);
+}
+
 body {
   &.modal-open {
     overflow: hidden;
@@ -12,10 +25,6 @@ body {
 }
 
 a {
+  display: none;
   color: var(--color-blue);
-}
-
-:root {
-  --gutter: 0 25px;
-  --section-heading-font-size: 12px;
 }
