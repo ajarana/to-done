@@ -14,28 +14,35 @@
 
 ## Events
 
-| Event       | Description | Type               |
-| ----------- | ----------- | ------------------ |
-| `taskAdded` |             | `CustomEvent<any>` |
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `taskAdded`     |             | `CustomEvent<any>` |
+| `taskCancelled` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
 
 ### Depends on
 
+- [td-button](../td-button)
 - [tdn-ui-icon](../design-system/icon)
 - [task-labels](../task-labels)
 - [date-selector](../date-selector)
+- [td-footer](../td-footer)
 
 ### Graph
 ```mermaid
 graph TD;
+  task-form --> td-button
   task-form --> tdn-ui-icon
   task-form --> task-labels
   task-form --> date-selector
-  task-labels --> task-label-modal
+  task-form --> td-footer
+  task-labels --> tdn-ui-icon
   date-selector --> tdn-ui-icon
   date-selector --> task-date-modal
+  task-date-modal --> td-heading
+  task-date-modal --> td-button
   style task-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

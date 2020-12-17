@@ -5,11 +5,11 @@
 <!-- Auto Generated Below -->
 
 
-## Events
+## Properties
 
-| Event             | Description | Type               |
-| ----------------- | ----------- | ------------------ |
-| `dueDateSelected` |             | `CustomEvent<any>` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `date`   | `date`    |             | `string` | `undefined` |
 
 
 ## Dependencies
@@ -28,6 +28,8 @@
 graph TD;
   date-selector --> tdn-ui-icon
   date-selector --> task-date-modal
+  task-date-modal --> td-heading
+  task-date-modal --> td-button
   task-form --> date-selector
   style date-selector fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -3,10 +3,11 @@ import {
   h, 
   Prop,
   State,
-  Listen,
   Event,
   EventEmitter
 } from '@stencil/core';
+
+import { classNames } from '../../utils';
 
 @Component({
   tag: 'task-labels',
@@ -27,43 +28,50 @@ export class TaskLabels {
     bubbles: true,
   }) taskLabelsSelected: EventEmitter;
 
-  @Listen('modalClose')
-  modalCloseHandler() {
-    this.toggleModal();
-  }
-
-  @Listen('labelSelection')
-  labelSelectionHandler(e: any) {
-    this.selectLabels(e.detail);
-
-    this.taskLabelsSelected.emit(e.detail);
-  }
-
-  selectLabels(labelIds: Array<any>) {
-    this.selectedLabelIds = labelIds;
-  }
-
-  toggleModal() {
-    this.showModal = !this.showModal;
-
-    // TODO: Figure out a better way to prevent background scrolling while modal is open.
-    const body = document.getElementsByTagName("body")[0];
-
-    if (this.showModal) {
-      body.classList.add("modal-open");
+  selectLabels(labelId: number) {
+    if (this.selectedLabelIds.includes(labelId)) {
+      this.selectedLabelIds = this.selectedLabelIds.filter(id => labelId !== id);
     }
     else {
-      body.classList.remove("modal-open");
+      this.selectedLabelIds = this.selectedLabelIds.concat([labelId]);
     }
+
+    this.taskLabelsSelected.emit(this.selectedLabelIds);
   }
 
   render() {
-    const selectedLabels = this.selectedLabelIds.map(id => {
-      const label = this.labels.find(label => label.id === id);
+    const selectedLabels = this.labels.map(label => {
+      const {
+        id,
+        color,
+        name
+      } = label;
+
+      const selected = this.selectedLabelIds.includes(id);
+
+      const labelClasses = classNames([
+        "label",
+        `color-${id}`,
+        {
+          "selected": selected
+        }
+      ]);
 
       return (
-        <li>
-          {label.name}
+        <li
+          class={labelClasses}
+          onClick={() => this.selectLabels(id)}
+          // Conditionally adds prop to object
+          style={
+            {
+              ...(selected && {background: color}),
+              border: `1px solid ${color}`
+            }
+          }
+        >
+          <div>{name}</div>
+          
+          <tdn-ui-icon name={(selected) ? "x" : "add"}></tdn-ui-icon>
         </li>
       );
     });
@@ -74,20 +82,9 @@ export class TaskLabels {
       >
         <label class="section-heading">LABELS</label>
 
-        <ul>
+        <ul class="labels">
           {selectedLabels}
         </ul>
-
-        <button
-          onClick={() => this.toggleModal()}
-        >Select labels</button>
-
-        {(this.showModal) &&
-          <task-label-modal
-            labels={this.labels}
-            currentlySelectedLabelIds={this.selectedLabelIds}
-          ></task-label-modal>
-        }
       </div>
     );
   }

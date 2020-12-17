@@ -13,6 +13,6 @@ import { TaskListComponent } from './task-list/task-list.component';
   exports: [
     TaskListComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TasksModule { }

@@ -2,6 +2,32 @@
   display: block;
 }
 
+section {
+  margin-bottom: 24px;
+
+  > div {
+    color: var(--color-neutral-10);
+    font-size: var(--input-text-font-size);
+    border: 1px solid var(--color-neutral-50);
+    padding: var(--input-padding);
+    border-radius: var(--input-border-radius);
+    width: 100%;
+    max-width: 235px;
+    display: flex;
+    align-items: center;
+
+    tdn-ui-icon {
+      color: var(--color-neutral-25);
+      margin-right: 11px;
+      font-size: 20px;
+    }
+  }
+}
+
 .section-heading {
   font-size: var(--section-heading-font-size);
+  color: var(--color-neutral-25);
+  font-weight: normal;
+  margin-bottom: 7px;
+  display: block;
 }

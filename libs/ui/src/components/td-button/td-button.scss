@@ -1,0 +1,27 @@
+:host {
+  display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
+}
+
+button {
+  color: var(--color-neutral-10);
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: var(--input-border-radius);
+  padding: var(--button-padding);
+  font-size: var(--input-text-font-size);
+  outline: none;
+}
+
+.danger-button {
+  background: var(--app-state-color-danger);
+  color: white;
+}
+
+.success-button {
+  background: var(--color-green);
+  color: white;
+}

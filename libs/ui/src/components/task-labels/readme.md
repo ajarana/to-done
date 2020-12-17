@@ -27,12 +27,12 @@
 
 ### Depends on
 
-- [task-label-modal](../task-label-modal)
+- [tdn-ui-icon](../design-system/icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  task-labels --> task-label-modal
+  task-labels --> tdn-ui-icon
   task-form --> task-labels
   style task-labels fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -1,36 +1,36 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { ToDoneHeader } from './to-done-header';
+import { TdTask } from './td-task';
 
-describe('to-done-header', () => {
+describe('td-task', () => {
   it('renders', async () => {
     const {root} = await newSpecPage({
-      components: [ToDoneHeader],
-      html: '<to-done-header></to-done-header>'
+      components: [TdTask],
+      html: '<td-task></td-task>'
     });
     expect(root).toEqualHtml(`
-      <to-done-header>
+      <td-task>
         <mock:shadow-root>
           <div>
             Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </to-done-header>
+      </td-task>
     `);
   });
 
   it('renders with values', async () => {
     const {root} = await newSpecPage({
-      components: [ToDoneHeader],
-      html: `<to-done-header first="Stencil" last="'Don't call me a framework' JS"></to-done-header>`
+      components: [TdTask],
+      html: `<td-task first="Stencil" last="'Don't call me a framework' JS"></td-task>`
     });
     expect(root).toEqualHtml(`
-      <to-done-header first="Stencil" last="'Don't call me a framework' JS">
+      <td-task first="Stencil" last="'Don't call me a framework' JS">
         <mock:shadow-root>
           <div>
             Hello, World! I'm Stencil 'Don't call me a framework' JS
           </div>
         </mock:shadow-root>
-      </to-done-header>
+      </td-task>
     `);
   });
 });

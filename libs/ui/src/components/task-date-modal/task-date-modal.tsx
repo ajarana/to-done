@@ -7,9 +7,7 @@ import {
   EventEmitter
 } from '@stencil/core';
 
-// const months = [
-//   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-// ];
+import { classNames } from '../../utils';
 
 @Component({
   tag: 'task-date-modal',
@@ -17,21 +15,15 @@ import {
   shadow: true,
 })
 export class TaskDateModal {
-  @State() showModal: Boolean;
+  currentDate = new Date();
 
-  @Prop() currentDate: any;
+  @Prop() currentlySelectedDate: string;
 
-  @Prop() currentlySelectedYear: number;
+  @State() month: string;
 
-  @Prop() currentlySelectedMonth: number;
+  @State() day: string;
 
-  @Prop() currentlySelectedDay: number;
-
-  @State() month: number;
-
-  @State() day: number;
-
-  @State() year: number;
+  @State() year: string;
 
   @State() monthError: boolean = false;
 
@@ -62,9 +54,9 @@ export class TaskDateModal {
 
     if (validFullDate) {
       this.dateSelection.emit({
-        year: this.year,
-        month: this.month,
-        day: this.day
+        year: parseInt(this.year, 10),
+        month: parseInt(this.month, 10),
+        day: parseInt(this.day, 10)
       });
   
       this.modalClose.emit();
@@ -72,101 +64,75 @@ export class TaskDateModal {
   }
 
   componentDidLoad() {
-    this.year = this.currentlySelectedYear;
+    const date = (this.currentlySelectedDate) ? new Date(parseInt(this.currentlySelectedDate, 10)) : this.currentDate;
 
-    this.month = this.currentlySelectedMonth;
+    this.year = date.getFullYear().toString();
 
-    this.day = this.currentlySelectedDay;
+    this.month = (date.getMonth() + 1).toString();
+
+    this.day = date.getDate().toString();
   }
 
   isNumber(val: string) {
     return val.match(/^\d+$/g);
   }
 
-  monthHandler(e: any) {
-    const target = e.target as HTMLInputElement;
-
-    const {
-      value
-    } = target;
-
-    const month = parseInt(value, 10);
-
-    const isNumber = this.isNumber(value);
-
-    if (this.monthError && isNumber) {
-      this.monthError = false;
-    }
-
-    this.month = isNumber ? month : null;
-
-    if (this.fullDateError && this.month && this.day && this.year) {
-      this.validateFullDate();
-    }
-  }
-
   validateMonth() {
-    this.monthError = !this.month || this.month > 12 || this.month < 1;
+    const isNumber = this.isNumber(this.month);
+
+    const month = parseInt(this.month, 10);
+
+    this.monthError = !isNumber || month > 12 || month < 1;
 
     if (this.month && this.day && this.year) {
       this.validateFullDate();
     }
   }
 
-  dayHandler(e: any) {
+  inputHandler(e: any, type) {
     const target = e.target as HTMLInputElement;
 
     const {
       value
     } = target;
 
-    const day = parseInt(value, 10);
-
     const isNumber = this.isNumber(value);
 
-    if (this.dayError && isNumber) {
-      this.dayError = false;
+    if (this[type + "Error"] && isNumber) {
+      this[type + "Error"] = false;
     }
-
-    this.day = isNumber ? day : null;
+    
+    this[type] = value;
 
     if (this.fullDateError && this.month && this.day && this.year) {
       this.validateFullDate();
+    }
+    else {
+      this.fullDateError = false;
     }
   }
 
   validateDay() {
-    this.dayError = !this.day || this.day > 31 || this.day < 1;
+    const isNumber = this.isNumber(this.day);
+
+    const day = parseInt(this.day, 10);
+
+    this.dayError = !isNumber || day > 31 || day < 1;
 
     if (this.month && this.day && this.year) {
       this.validateFullDate();
     }
-  }
-
-  yearHandler(e: any) {
-    const target = e.target as HTMLInputElement;
-
-    const {
-      value
-    } = target;
-
-    const year = parseInt(value, 10);
-
-    const isNumber = this.isNumber(value);
-
-    if (this.yearError && isNumber) {
-      this.yearError = false;
-    }
-
-    this.year = isNumber ? year : null;
-
-    if (this.fullDateError && this.month && this.day && this.year) {
-      this.validateFullDate();
+    else {
+      this.fullDateError = false;
     }
   }
 
   validateYear() {
-    this.yearError = !this.year || this.year.toString().length < 4;
+    const isNumber = this.isNumber(this.year);
+
+    const year = parseInt(this.year, 10);
+
+    this.yearError = !isNumber || year.toString().length < 4;
 
     if (this.month && this.day && this.year) {
       this.validateFullDate();
@@ -174,11 +140,21 @@ export class TaskDateModal {
   }
 
   validateFullDate() {
-    const date = new Date(this.year, this.month - 1, this.day);
+    if (!this.isNumber(this.year) || !this.isNumber(this.month) || !this.isNumber(this.day)) {
+      return this.fullDateError = true;
+    }
 
-    const dateMatchesCurrentDate = this.currentDate.getFullYear() === this.year && this.currentDate.getMonth() === this.month - 1 && this.currentDate.getDate() === this.day;
+    const year = parseInt(this.year, 10);
 
-    const invalidDate = date.getFullYear() !== this.year || date.getMonth() !== (this.month - 1) || date.getDate() !== this.day;
+    const month = parseInt(this.month, 10);
+
+    const day = parseInt(this.day, 10);
+
+    const date = new Date(year, month - 1, day);
+
+    const dateMatchesCurrentDate = this.currentDate.getFullYear() === year && this.currentDate.getMonth() === month - 1 && this.currentDate.getDate() === day;
+
+    const invalidDate = date.getFullYear() !== year || date.getMonth() !== (month - 1) || date.getDate() !== day;
 
     const presentOrFutureDate = dateMatchesCurrentDate || date.getTime() > this.currentDate.getTime();
 
@@ -188,6 +164,17 @@ export class TaskDateModal {
   }
 
   render() {
+    const dateInputClasses = classNames([
+      "date-inputs",
+      {
+        "error": this.dayError || this.monthError || this.yearError || this.fullDateError,
+        "day-error": this.dayError,
+        "month-error": this.monthError,
+        "year-error": this.yearError,
+        "full-date-error": this.fullDateError
+      }
+    ]);
+
     return (
       <div
         class="task-date-modal-wrapper"
@@ -199,67 +186,60 @@ export class TaskDateModal {
           class="task-date-modal"
           onClick={e => e.stopPropagation()}
         >
-          <section>
-            <div>
+          <td-heading
+            type="h2"
+            text="Select a Date"
+          ></td-heading>
+
+          <section class={dateInputClasses}>
+            <div class="month">
               <label htmlFor="monthInput">Month</label>
 
               <input 
                 id="monthInput"
-                onInput={e => this.monthHandler(e as InputEvent)}
+                onInput={e => this.inputHandler(e as InputEvent, "month")}
                 placeholder="Month"
                 onBlur={() => this.validateMonth()}
                 maxLength={2}
                 value={this.month}
               />
-
-              {(this.monthError) &&
-                <p>Please enter a valid month. e.g. 1 for January.</p>
-              }
             </div>
 
-            <div>
+            <div class="day">
               <label htmlFor="dayInput">Day</label>
 
               <input 
                 id="dayInput"
-                onInput={e => this.dayHandler(e as InputEvent)}
+                onInput={e => this.inputHandler(e as InputEvent, "day")}
                 placeholder="Day"
                 onBlur={() => this.validateDay()}
                 maxLength={2}
                 value={this.day}
               />
-
-              {(this.dayError) &&
-                <p>Please enter a valid day of the month.</p>
-              }
             </div>
 
-            <div>
+            <div class="year">
               <label htmlFor="yearInput">Year</label>
 
               <input 
                 id="yearInput"
-                onInput={e => this.yearHandler(e as InputEvent)}
+                onInput={e => this.inputHandler(e as InputEvent, "year")}
                 placeholder="Year"
                 onBlur={() => this.validateYear()}
                 maxLength={4}
                 value={this.year}
               />
-
-              {(this.yearError) &&
-                <p>Please enter a valid year.</p>
-              }
             </div>
-
-            {(this.fullDateError) &&
-                <p>Date entered is not a valid due date. The due date should either be today or another day in the future.</p>
-              }
           </section>
 
-          <button
-            type="button"
-            onClick={e => this.handleClick(e)}
-          >Select date</button>
+          {(this.fullDateError || this.dayError || this.monthError || this.yearError) &&
+            <p>Date entered is not a valid due date. The due date should either be today or another day in the future.</p>
+          }
+
+          <td-button
+            buttonText="Select Date"
+            handler={e => this.handleClick(e)}
+          ></td-button>
         </form>
       </div>
     );

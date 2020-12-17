@@ -1,10 +1,11 @@
-<to-done-header
-  header-copy="Add Task"
-></to-done-header>
-
-<task-form
-  [labels]="labels"
-></task-form>
+<td-header
+  header-copy="To Done"
+>
+  <td-button
+    button-text="Add Task"
+    type="success-button"
+  ></td-button>
+</td-header>
 
 <task-list
   [tasks]="tasks"

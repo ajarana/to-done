@@ -3,8 +3,7 @@ import {
   h,
   State,
   Listen,
-  Event,
-  EventEmitter
+  Prop
 } from '@stencil/core';
 
 @Component({
@@ -13,49 +12,13 @@ import {
   shadow: true,
 })
 export class DateSelector {
-  currentDate = new Date();
+  @Prop() date: string;
 
   @State() showModal: Boolean;
-
-  @State() month: number = this.currentDate.getMonth() + 1;
-
-  @State() day: number = this.currentDate.getDate();
-
-  @State() year: number = this.currentDate.getFullYear();
-
-  @Event({
-    eventName: 'dueDateSelected',
-    composed: true,
-    cancelable: true,
-    bubbles: true,
-  }) dueDateSelected: EventEmitter;
 
   @Listen('modalClose')
   modalCloseHandler() {
     this.toggleModal();
-  }
-
-  @Listen('dateSelection')
-  dateSelectionHandler(e: any) {
-    const {
-      year,
-      month,
-      day
-    } = e.detail;
-
-    this.year = year;
-    this.month = month;
-    this.day = day;
-
-    const date = new Date(year, month, day).getTime().toString();
-
-    this.dueDateSelected.emit(date);
-  }
-
-  componentDidLoad() {
-    const date = new Date(this.year, this.month, this.day).getTime().toString();
-
-    this.dueDateSelected.emit(date);
   }
 
   toggleModal() {
@@ -73,8 +36,20 @@ export class DateSelector {
   }
 
   render() {
+    let year, month, day;
+
+    if (this.date) {
+      const date = new Date(parseInt(this.date, 10));
+
+      year = date.getFullYear();
+
+      month = date.getMonth();
+
+      day = date.getDate();
+    }
+
     return (
-      <section>
+      <section class="task-form-section">
         <label class="section-heading">DUE DATE</label>
 
         <div
@@ -82,15 +57,17 @@ export class DateSelector {
         >
           <tdn-ui-icon name="calendar"></tdn-ui-icon>
 
-          {this.month}/{this.day}/{this.year}
+          {(this.date) && 
+            <div>{month + 1}/{day}/{year}</div>
+          }
+          {(!this.date) &&
+            <div>Select a Date</div>
+          }
         </div>
 
         {(this.showModal) &&
           <task-date-modal
-            currentDate={this.currentDate}
-            currentlySelectedYear={this.year}
-            currentlySelectedMonth={this.month}
-            currentlySelectedDay={this.day}
+            currentlySelectedDate={this.date}
           ></task-date-modal>
         }
       </section>

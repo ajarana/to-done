@@ -1,10 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
 
-// interface SomeValue {
-//   name: string;
-//   value: string;
-// }
-
 @Component({
   tag: 'task-list',
   styleUrl: 'task-list.scss',
@@ -36,8 +31,6 @@ export class TaskList {
 
     return (
       <div class="task-list">
-        <h2>Task List</h2>
-
         <ul>
           {tasks}
         </ul>

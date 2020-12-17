@@ -2,8 +2,19 @@
   display: block;
 }
 
+#monthInput, #dayInput {
+  max-width: 35px;
+}
+
+#yearInput {
+  max-width: 50px;
+}
+
+p {
+  color: var(--app-text-invalid);
+}
+
 .task-date-modal-wrapper {
-  border: 1px solid green;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,9 +27,80 @@
 
   display: flex;
 
+  .date-inputs {
+    display: flex;
+    margin: 32px 0 16px;
+
+    div {      
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+
+    &.day-error {
+      .day input {
+        border-color: var(--app-state-color-danger);
+      }
+    }
+
+    &.month-error {
+      .month input {
+        border-color: var(--app-state-color-danger);
+      }
+    }
+
+    &.year-error {
+      .year input {
+        border-color: var(--app-state-color-danger);
+      }
+    }
+
+    &.full-date-error {
+      .day input, .month input, .year input {
+        border-color: var(--app-state-color-danger);
+      }
+    }
+
+    &.error {
+      .day input, .month input, .year input {
+        &:focus {
+          border: 1px solid var(--app-state-color-focus);
+        }
+      }
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  input {
+    color: var(--color-neutral-10);
+    font-size: var(--input-text-font-size);
+    border: 1px solid var(--color-neutral-50);
+    padding: var(--input-padding);
+    border-radius: var(--input-border-radius);
+    width: 100%;
+    outline: none;
+
+    &:focus {
+      outline: none;
+      border: 1px solid var(--app-state-color-focus);
+    }
+
+    &::placeholder {
+      color: var(--color-neutral-25);
+    }
+  }
+
   .task-date-modal {
     margin: auto;
-    border: 1px solid black;
+    color: var(--color-neutral-10);
+    font-size: var(--input-text-font-size);
+    border: 1px solid var(--color-neutral-50);
+    border-radius: var(--input-border-radius);
+    box-shadow: var(--fancy-box-shadow);
     
     //Vertical center thanks to flex; overflowing content correctly scrolls
     width: 80%;

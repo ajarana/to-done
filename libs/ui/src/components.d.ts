@@ -8,12 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconColor, IconSizes } from "./components/design-system/icon/icon.interface";
 export namespace Components {
     interface DateSelector {
+        "date": string;
     }
     interface TaskDateModal {
-        "currentDate": any;
-        "currentlySelectedDay": number;
-        "currentlySelectedMonth": number;
-        "currentlySelectedYear": number;
+        "currentlySelectedDate": string;
     }
     interface TaskForm {
         "labels": Array<any>;
@@ -27,6 +25,39 @@ export namespace Components {
     }
     interface TaskList {
         "tasks": Array<any>;
+    }
+    interface TdButton {
+        "buttonText": string;
+        "handler": Function;
+        "type": string;
+    }
+    interface TdFooter {
+        "last": string;
+    }
+    interface TdHeader {
+        "headerCopy": string;
+    }
+    interface TdHeading {
+        "text": string;
+        "type": string;
+    }
+    interface TdTask {
+        /**
+          * The first name
+         */
+        "first": string;
+        /**
+          * The last name
+         */
+        "last": string;
+        /**
+          * The middle name
+         */
+        "middle": string;
+    }
+    interface TdnHeading {
+        "text": string;
+        "type": string;
     }
     interface TdnUiIcon {
         /**
@@ -46,9 +77,6 @@ export namespace Components {
           * The size of the icon: xxs through xl
          */
         "size"?: IconSizes;
-    }
-    interface ToDoneHeader {
-        "headerCopy": string;
     }
 }
 declare global {
@@ -88,17 +116,47 @@ declare global {
         prototype: HTMLTaskListElement;
         new (): HTMLTaskListElement;
     };
+    interface HTMLTdButtonElement extends Components.TdButton, HTMLStencilElement {
+    }
+    var HTMLTdButtonElement: {
+        prototype: HTMLTdButtonElement;
+        new (): HTMLTdButtonElement;
+    };
+    interface HTMLTdFooterElement extends Components.TdFooter, HTMLStencilElement {
+    }
+    var HTMLTdFooterElement: {
+        prototype: HTMLTdFooterElement;
+        new (): HTMLTdFooterElement;
+    };
+    interface HTMLTdHeaderElement extends Components.TdHeader, HTMLStencilElement {
+    }
+    var HTMLTdHeaderElement: {
+        prototype: HTMLTdHeaderElement;
+        new (): HTMLTdHeaderElement;
+    };
+    interface HTMLTdHeadingElement extends Components.TdHeading, HTMLStencilElement {
+    }
+    var HTMLTdHeadingElement: {
+        prototype: HTMLTdHeadingElement;
+        new (): HTMLTdHeadingElement;
+    };
+    interface HTMLTdTaskElement extends Components.TdTask, HTMLStencilElement {
+    }
+    var HTMLTdTaskElement: {
+        prototype: HTMLTdTaskElement;
+        new (): HTMLTdTaskElement;
+    };
+    interface HTMLTdnHeadingElement extends Components.TdnHeading, HTMLStencilElement {
+    }
+    var HTMLTdnHeadingElement: {
+        prototype: HTMLTdnHeadingElement;
+        new (): HTMLTdnHeadingElement;
+    };
     interface HTMLTdnUiIconElement extends Components.TdnUiIcon, HTMLStencilElement {
     }
     var HTMLTdnUiIconElement: {
         prototype: HTMLTdnUiIconElement;
         new (): HTMLTdnUiIconElement;
-    };
-    interface HTMLToDoneHeaderElement extends Components.ToDoneHeader, HTMLStencilElement {
-    }
-    var HTMLToDoneHeaderElement: {
-        prototype: HTMLToDoneHeaderElement;
-        new (): HTMLToDoneHeaderElement;
     };
     interface HTMLElementTagNameMap {
         "date-selector": HTMLDateSelectorElement;
@@ -107,25 +165,28 @@ declare global {
         "task-label-modal": HTMLTaskLabelModalElement;
         "task-labels": HTMLTaskLabelsElement;
         "task-list": HTMLTaskListElement;
+        "td-button": HTMLTdButtonElement;
+        "td-footer": HTMLTdFooterElement;
+        "td-header": HTMLTdHeaderElement;
+        "td-heading": HTMLTdHeadingElement;
+        "td-task": HTMLTdTaskElement;
+        "tdn-heading": HTMLTdnHeadingElement;
         "tdn-ui-icon": HTMLTdnUiIconElement;
-        "to-done-header": HTMLToDoneHeaderElement;
     }
 }
 declare namespace LocalJSX {
     interface DateSelector {
-        "onDueDateSelected"?: (event: CustomEvent<any>) => void;
+        "date"?: string;
     }
     interface TaskDateModal {
-        "currentDate"?: any;
-        "currentlySelectedDay"?: number;
-        "currentlySelectedMonth"?: number;
-        "currentlySelectedYear"?: number;
+        "currentlySelectedDate"?: string;
         "onDateSelection"?: (event: CustomEvent<any>) => void;
         "onModalClose"?: (event: CustomEvent<any>) => void;
     }
     interface TaskForm {
         "labels"?: Array<any>;
         "onTaskAdded"?: (event: CustomEvent<any>) => void;
+        "onTaskCancelled"?: (event: CustomEvent<any>) => void;
     }
     interface TaskLabelModal {
         "currentlySelectedLabelIds"?: Array<any>;
@@ -139,6 +200,40 @@ declare namespace LocalJSX {
     }
     interface TaskList {
         "tasks"?: Array<any>;
+    }
+    interface TdButton {
+        "buttonText"?: string;
+        "handler"?: Function;
+        "onTdButtonClicked"?: (event: CustomEvent<any>) => void;
+        "type"?: string;
+    }
+    interface TdFooter {
+        "last"?: string;
+    }
+    interface TdHeader {
+        "headerCopy"?: string;
+    }
+    interface TdHeading {
+        "text"?: string;
+        "type"?: string;
+    }
+    interface TdTask {
+        /**
+          * The first name
+         */
+        "first"?: string;
+        /**
+          * The last name
+         */
+        "last"?: string;
+        /**
+          * The middle name
+         */
+        "middle"?: string;
+    }
+    interface TdnHeading {
+        "text"?: string;
+        "type"?: string;
     }
     interface TdnUiIcon {
         /**
@@ -159,9 +254,6 @@ declare namespace LocalJSX {
          */
         "size"?: IconSizes;
     }
-    interface ToDoneHeader {
-        "headerCopy"?: string;
-    }
     interface IntrinsicElements {
         "date-selector": DateSelector;
         "task-date-modal": TaskDateModal;
@@ -169,8 +261,13 @@ declare namespace LocalJSX {
         "task-label-modal": TaskLabelModal;
         "task-labels": TaskLabels;
         "task-list": TaskList;
+        "td-button": TdButton;
+        "td-footer": TdFooter;
+        "td-header": TdHeader;
+        "td-heading": TdHeading;
+        "td-task": TdTask;
+        "tdn-heading": TdnHeading;
         "tdn-ui-icon": TdnUiIcon;
-        "to-done-header": ToDoneHeader;
     }
 }
 export { LocalJSX as JSX };
@@ -183,8 +280,13 @@ declare module "@stencil/core" {
             "task-label-modal": LocalJSX.TaskLabelModal & JSXBase.HTMLAttributes<HTMLTaskLabelModalElement>;
             "task-labels": LocalJSX.TaskLabels & JSXBase.HTMLAttributes<HTMLTaskLabelsElement>;
             "task-list": LocalJSX.TaskList & JSXBase.HTMLAttributes<HTMLTaskListElement>;
+            "td-button": LocalJSX.TdButton & JSXBase.HTMLAttributes<HTMLTdButtonElement>;
+            "td-footer": LocalJSX.TdFooter & JSXBase.HTMLAttributes<HTMLTdFooterElement>;
+            "td-header": LocalJSX.TdHeader & JSXBase.HTMLAttributes<HTMLTdHeaderElement>;
+            "td-heading": LocalJSX.TdHeading & JSXBase.HTMLAttributes<HTMLTdHeadingElement>;
+            "td-task": LocalJSX.TdTask & JSXBase.HTMLAttributes<HTMLTdTaskElement>;
+            "tdn-heading": LocalJSX.TdnHeading & JSXBase.HTMLAttributes<HTMLTdnHeadingElement>;
             "tdn-ui-icon": LocalJSX.TdnUiIcon & JSXBase.HTMLAttributes<HTMLTdnUiIconElement>;
-            "to-done-header": LocalJSX.ToDoneHeader & JSXBase.HTMLAttributes<HTMLToDoneHeaderElement>;
         }
     }
 }

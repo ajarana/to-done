@@ -7,12 +7,9 @@
 
 ## Properties
 
-| Property                 | Attribute                  | Description | Type     | Default     |
-| ------------------------ | -------------------------- | ----------- | -------- | ----------- |
-| `currentDate`            | `current-date`             |             | `any`    | `undefined` |
-| `currentlySelectedDay`   | `currently-selected-day`   |             | `number` | `undefined` |
-| `currentlySelectedMonth` | `currently-selected-month` |             | `number` | `undefined` |
-| `currentlySelectedYear`  | `currently-selected-year`  |             | `number` | `undefined` |
+| Property                | Attribute                 | Description | Type     | Default     |
+| ----------------------- | ------------------------- | ----------- | -------- | ----------- |
+| `currentlySelectedDate` | `currently-selected-date` |             | `string` | `undefined` |
 
 
 ## Events
@@ -29,9 +26,16 @@
 
  - [date-selector](../date-selector)
 
+### Depends on
+
+- [td-heading](../td-heading)
+- [td-button](../td-button)
+
 ### Graph
 ```mermaid
 graph TD;
+  task-date-modal --> td-heading
+  task-date-modal --> td-button
   date-selector --> task-date-modal
   style task-date-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```

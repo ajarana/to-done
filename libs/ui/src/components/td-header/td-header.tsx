@@ -1,11 +1,11 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'to-done-header',
-  styleUrl: 'to-done-header.scss',
+  tag: 'td-header',
+  styleUrl: 'td-header.scss',
   shadow: true,
 })
-export class ToDoneHeader {
+export class TdHeader {
   @Prop() headerCopy: string = "";
 
   render() {
@@ -17,6 +17,10 @@ export class ToDoneHeader {
           <p class="copy">
             {this.headerCopy}
           </p>
+
+          <section class="right">
+            <slot />
+          </section>
         </div>
       </header>
     );

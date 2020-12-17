@@ -21,14 +21,17 @@ export class TaskForm {
   taskName: string = "";
   description: string = "";
   notes: string = "";
-  dueDate: string;
   labelsSelected: Array<any> = [];
 
   @State() file: File;
 
+  @State() fileSelectionErrorMessage: string = "";
+
   @State() previewSrc: string;
 
   @State() taskNameError: boolean = false;
+
+  @State() dueDate: string = "";
 
   @Prop() labels: Array<any>;
 
@@ -39,9 +42,22 @@ export class TaskForm {
     bubbles: true,
   }) taskAdded: EventEmitter;
 
-  @Listen('dueDateSelected')
+  @Event({
+    eventName: 'taskCancelled',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) taskCancelled: EventEmitter;
+
+  @Listen('dateSelection')
   dueDateSelectionHandler(e) {
-    this.dueDate = e.detail;
+    const {
+      year,
+      month,
+      day
+    } = e.detail;
+
+    this.dueDate = new Date(year, month - 1, day).getTime().toString()
   }
 
   @Listen('taskLabelsSelected')
@@ -66,7 +82,31 @@ export class TaskForm {
 
     this.file = file;
 
+    this.validateFile(file);
+  }
+
+  validateFile(file: File) {
+    const {
+      size,
+      type
+    } = file;
+
+    if (!type.startsWith('image/')) {
+      this.fileSelectionErrorMessage = "Please select an image file";
+
+      return false;
+    }
+    else if (size > 1048576) {
+      this.fileSelectionErrorMessage = "Please select a file 1MB or smaller";
+
+      return false;
+    }
+
+    this.fileSelectionErrorMessage = "";
+
     this.createPreview(file);
+
+    return true;
   }
 
   clearFile() {
@@ -74,7 +114,9 @@ export class TaskForm {
 
     this.previewSrc = undefined;
 
-    this.fileInput.value = "";
+    this.fileSelectionErrorMessage = "";
+
+    if (this.fileInput) this.fileInput.value = "";
   }
 
   onDragLeave(e) {
@@ -95,9 +137,10 @@ export class TaskForm {
 
     this.file = file;
 
-    this.createPreview(file);
+    this.validateFile(file);
   }
 
+  // TODO: Figure out a nice way to include the preview in the UI.
   createPreview(file: File) {      
     if (!file.type.startsWith('image/')) return;
 
@@ -137,128 +180,170 @@ export class TaskForm {
     const fancyUploadClasses = classNames([
       "fancy-upload",
       {
-        "uploaded": this.file
+        "uploaded": this.file,
+        "error": this.fileSelectionErrorMessage
       }
     ]);
 
-    const FancyUploadContents = (this.file) ? 
-    <div>
-      <p>Success! <span>{this.file.name}</span> selected with size <span class="file-size">{this.getFileSize(this.file.size)}</span></p>
+    let FancyUploadContents: any;
 
-      <button
-        type="button"
-        onClick={() => this.clearFile()}
-      >Clear Selection</button>
-    </div>
-    :
-    <div>
-      <tdn-ui-icon name="upload" />
+    if (this.fileSelectionErrorMessage) {
+      FancyUploadContents = (
+        <div>
+          <p><span>{this.file.name}</span> of size <span>{this.getFileSize(this.file.size)}</span> cannot be selected. {this.fileSelectionErrorMessage}.</p>
 
-      <label class="section-heading file-upload-label" htmlFor="fileUpload">Click to upload</label>
+          <td-button
+            buttonText="Clear Selection"
+            handler={() => this.clearFile()}
+          ></td-button>
+        </div>
+      );
+    }
+    else if (this.file) {
+      FancyUploadContents = (
+        <div>
+          <p>Success! <span>{this.file.name}</span> selected of size <span>{this.getFileSize(this.file.size)}</span></p>
 
-      <input 
-        id="fileUpload"
-        type="file"
-        accept="image/*"
-        onChange={e => this.onFileSelection(e)}
-        ref={el => this.fileInput = el as HTMLInputElement}
-      />
-    </div>;
+          <td-button
+            buttonText="Clear Selection"
+            handler={() => this.clearFile()}
+          ></td-button>
+        </div>
+      );
+    }
+    else {
+      FancyUploadContents = (
+        <div>
+          <tdn-ui-icon name="upload" />
 
-    return (
-      <form class="task-form">
-        <section
-          class={taskNameWrapperClasses}
-        >
-          <label class="section-heading" htmlFor="taskName">TASK NAME*</label>
+          <label class="section-heading file-upload-label" htmlFor="fileUpload">Click to upload</label>
 
           <input 
-            id="taskName"
-            value={this.taskName}
-            onInput={e => this.handleTaskName(e)}
-            onBlur={() => this.validateTaskName()}
-            placeholder="e.g. Turn work in on time"
-          />
-
-          {(this.taskNameError) &&
-            <p>Please enter a valid name.</p>
-          }
-        </section>
-
-        <section
-          class="task-form-section"
-        >
-          <h3 class="section-heading">THUMBNAIL</h3>
-
-          <div 
-            class={fancyUploadClasses}
-          >
-            {/* <img 
-              class="preview-image"
-              src={this.previewSrc}
-            /> */}
-
-            {FancyUploadContents}
-          </div>
-
-          <div
-            class="drop-zone"
+            id="fileUpload"
+            type="file"
+            accept="image/*"
+            onChange={e => this.onFileSelection(e)}
             onDragLeave={e => this.onDragLeave(e)}
             onDragOver={e => this.onDragOver(e)}
             onDrop={e => this.onDrop(e)}
-          ></div>
-        </section>
-
-        <section
-          class="task-form-section"
-        >
-          <label class="section-heading" htmlFor="description">DESCRIPTION</label>
-          <textarea 
-            id="description"
-            value={this.description}
-            onInput={e => this.handleDescription(e)}
-            spellcheck={false}
-            maxLength={100}
-            placeholder="e.g. Todo app completion"
+            ref={el => this.fileInput = el as HTMLInputElement}
           />
-        </section>
+        </div>
+      );
+    }
 
-        <task-labels
-          labels={this.labels}
-        ></task-labels>
+    return (
+      <main>
+        <form class="task-form">
+          <section
+            class={taskNameWrapperClasses}
+          >
+            <label class="section-heading" htmlFor="taskName">TASK NAME*</label>
 
-        <date-selector></date-selector>
+            <input 
+              id="taskName"
+              value={this.taskName}
+              onInput={e => this.handleTaskName(e)}
+              onBlur={() => this.validateTaskName()}
+              placeholder="e.g. Turn work in on time"
+              maxlength={50}
+            />
 
-        <section
-          class="task-form-section"
-        >
-          <label class="section-heading" htmlFor="notes">NOTES</label>
-          <textarea 
-            id="notes"
-            value={this.notes}
-            onInput={e => this.handleNotes(e)}
-            spellcheck={false}
-            maxLength={100}
-            placeholder="e.g. Make sure you're familiar with the tools"
-          />
-        </section>
+            {(this.taskNameError) &&
+              <p>Please enter a valid name</p>
+            }
+          </section>
 
-        <button
-          type="button"
-          onClick={e => {
-            e.preventDefault();
+          <section
+            class="task-form-section"
+          >
+            <h3 class="section-heading">THUMBNAIL</h3>
 
-            this.taskAdded.emit({
-              name: this.taskName,
-              thumbnail: this.file,
-              labels: this.labelsSelected,
-              description: this.description,
-              dueDate: this.dueDate,
-              notes: this.notes
-            });
-          }}
-        >Add task</button>
-      </form>
+            <div 
+              class={fancyUploadClasses}
+            >
+              {/* <img 
+                class="preview-image"
+                src={this.previewSrc}
+              /> */}
+
+              {FancyUploadContents}
+            </div>
+
+            {/* <div
+              class="drop-zone"
+              onDragLeave={e => this.onDragLeave(e)}
+              onDragOver={e => this.onDragOver(e)}
+              onDrop={e => this.onDrop(e)}
+            ></div> */}
+          </section>
+
+          <section
+            class="task-form-section"
+          >
+            <label class="section-heading" htmlFor="description">DESCRIPTION</label>
+            <textarea 
+              id="description"
+              value={this.description}
+              onInput={e => this.handleDescription(e)}
+              spellcheck={false}
+              maxLength={100}
+              placeholder="e.g. Todo app completion"
+            />
+          </section>
+
+          <task-labels
+            labels={this.labels}
+          ></task-labels>
+
+          <date-selector
+            date={this.dueDate}
+          ></date-selector>
+
+          <section
+            class="task-form-section"
+          >
+            <label class="section-heading" htmlFor="notes">NOTES</label>
+            <textarea 
+              id="notes"
+              value={this.notes}
+              onInput={e => this.handleNotes(e)}
+              spellcheck={false}
+              maxLength={100}
+              placeholder="e.g. Make sure you're familiar with the tools"
+            />
+          </section>
+        </form>
+
+        <td-footer>
+          <td-button 
+            buttonText="Cancel"
+            onClick={() => this.taskCancelled.emit()}
+          ></td-button>
+
+          <td-button 
+            buttonText="Delete"
+            type="danger-button"
+          ></td-button>
+
+          <td-button 
+            buttonText="Save"
+            type="success-button"
+            handler={e => {
+              e.preventDefault();
+
+              this.taskAdded.emit({
+                name: this.taskName,
+                thumbnail: this.file,
+                labels: this.labelsSelected,
+                description: this.description,
+                dueDate: this.dueDate,
+                notes: this.notes
+              });
+            }}
+          ></td-button>
+        </td-footer>
+      </main>
     );
   }
 }

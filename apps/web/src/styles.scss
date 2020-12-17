@@ -6,14 +6,23 @@
 @import './css/reset';
 
 :root {
+  --xs-font-size: 12px;
+  --s-font-size: 14px;
+  --m-font-size: 16px;
+  --l-font-size: 20px;
+
+  --regular-font-weight: 400;
+  --medium-font-weight: 500;
+
   --gutter: 0 25px;
-  --section-heading-font-size: 12px;
-  --input-text-font-size: 14px;
+  --section-heading-font-size: var(--xs-font-size);
+  --input-text-font-size: var(--s-font-size);
   --input-padding: 8.5px 16.5px 9.5px;
   --input-border-radius: 4px;
   --fancy-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.04);
   --button-padding: 8px 20px 9px;
   --default-box-sizing: border-box;
+  --general-transition: all 0.2s ease-in-out;
 
   background: var(--color-neutral-90);
 }
