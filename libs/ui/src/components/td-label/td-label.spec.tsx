@@ -1,36 +1,36 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { TdnHeading } from './tdn-heading';
+import { TdLabel } from './td-label';
 
-describe('tdn-heading', () => {
+describe('td-label', () => {
   it('renders', async () => {
     const {root} = await newSpecPage({
-      components: [TdnHeading],
-      html: '<tdn-heading></tdn-heading>'
+      components: [TdLabel],
+      html: '<td-label></td-label>'
     });
     expect(root).toEqualHtml(`
-      <tdn-heading>
+      <td-label>
         <mock:shadow-root>
           <div>
             Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </tdn-heading>
+      </td-label>
     `);
   });
 
   it('renders with values', async () => {
     const {root} = await newSpecPage({
-      components: [TdnHeading],
-      html: `<tdn-heading first="Stencil" last="'Don't call me a framework' JS"></tdn-heading>`
+      components: [TdLabel],
+      html: `<td-label first="Stencil" last="'Don't call me a framework' JS"></td-label>`
     });
     expect(root).toEqualHtml(`
-      <tdn-heading first="Stencil" last="'Don't call me a framework' JS">
+      <td-label first="Stencil" last="'Don't call me a framework' JS">
         <mock:shadow-root>
           <div>
             Hello, World! I'm Stencil 'Don't call me a framework' JS
           </div>
         </mock:shadow-root>
-      </tdn-heading>
+      </td-label>
     `);
   });
 });

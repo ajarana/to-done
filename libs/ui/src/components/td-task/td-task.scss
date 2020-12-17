@@ -1,3 +1,44 @@
 :host {
   display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
+}
+
+header {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.placeholder-thumbnail {
+  height: 90px;
+  background: var(--color-neutral-25);
+  border-radius: var(--td-border-radius);
+  opacity: 30%;
+  display: flex;
+  padding: 9px;
+
+  tdn-ui-icon {
+    font-size: 18px;
+    margin: auto 0 0 auto;
+  }
+}
+
+::slotted([slot=task-labels]) {
+  margin: 12px 0;
+}
+
+::slotted([slot=task-name]) {
+  line-height: var(--td-text-line-height);
+  margin-bottom: 4px;
+  font-weight: var(--medium-font-weight);
+}
+
+::slotted([slot=task-description]) {
+  line-height: var(--td-text-line-height);
+  color: var(--color-neutral-25);
+  font-size: var(--s-font-size);
 }

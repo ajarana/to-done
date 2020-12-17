@@ -8,33 +8,72 @@ import { Component, h, Prop } from '@stencil/core';
 export class TaskList {
   @Prop() tasks: Array<any> = [];
 
+  @Prop() labels: Array<any> = [];
+
   render() {
-    const tasks = this.tasks.map(task => (
-      <li>
-        <div>{task.name}</div>
+    const tasks = this.tasks.map(task => {
+      const {
+        name,
+        thumbnailUrl,
+        description,
+        labels: taskLabels,
+        dueDate,
+        notes
+      } = task;
 
-        <img 
-          width="100"
-          height="110"
-          src={task.thumbnailUrl}
-        />
+      const labels = taskLabels.map((id: number) => {
+        const label = this.labels.find(label => label.id === id);
 
-        <div>{task.description}</div>
+        return (
+          <li>
+            <td-label
+              label={label}
+            ></td-label>
+          </li>
+        );
+      });
 
-        <div>{task.labels}</div>
+      return (
+        <li>
+          <td-task
+            thumbnailUrl={thumbnailUrl}
+          >
+            <td-heading
+              slot="task-name"
+              type="h2"
+              headingText={name}
+            ></td-heading>
 
-        <div>{task.dueDate}</div>
+            {(labels.length > 0) &&
+              <ul class="task-labels" slot="task-labels">
+                {labels}
+              </ul>
+            }
 
-        <div>{task.notes}</div>
-      </li>
-    ));
+            {(description) &&
+              <p slot="task-description">{description}</p>
+            }
+
+            {(dueDate) &&
+              // <div slot="due-date">{dueDate}</div>
+              <td-date
+                slot="due-date"
+                date={dueDate}
+              ></td-date>
+            }
+
+            {(notes) &&
+              <div slot="task-notes">{notes}</div>
+            }
+          </td-task>
+        </li>
+      );
+    });
 
     return (
-      <div class="task-list">
-        <ul>
-          {tasks}
-        </ul>
-      </div>
+      <ul class="task-list">
+        {tasks}
+      </ul>
     );
   }
 }

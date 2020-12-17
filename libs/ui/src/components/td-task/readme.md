@@ -7,12 +7,28 @@
 
 ## Properties
 
-| Property | Attribute | Description     | Type     | Default     |
-| -------- | --------- | --------------- | -------- | ----------- |
-| `first`  | `first`   | The first name  | `string` | `undefined` |
-| `last`   | `last`    | The last name   | `string` | `undefined` |
-| `middle` | `middle`  | The middle name | `string` | `undefined` |
+| Property       | Attribute       | Description | Type     | Default     |
+| -------------- | --------------- | ----------- | -------- | ----------- |
+| `thumbnailUrl` | `thumbnail-url` |             | `string` | `undefined` |
 
+
+## Dependencies
+
+### Used by
+
+ - [task-list](../task-list)
+
+### Depends on
+
+- [tdn-ui-icon](../design-system/icon)
+
+### Graph
+```mermaid
+graph TD;
+  td-task --> tdn-ui-icon
+  task-list --> td-task
+  style td-task fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

@@ -4,9 +4,9 @@ export default {
   title: 'Demo',
 };
 
-export const TdnHeading = () => {
+export const TdLabel = () => {
   const firstName = text('First name', 'StencilJS');
   const middleName = text('Middle name', 'Storybook');
   const lastName = text('Last name', 'Test');
-  return `<tdn-heading first="${firstName}" middle="${middleName}" last="${lastName}"></tdn-heading>`;
+  return `<td-label first="${firstName}" middle="${middleName}" last="${lastName}"></td-label>`;
 };

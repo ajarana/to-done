@@ -4,7 +4,9 @@ import {
   HostListener
 } from '@angular/core';
 import { TaskService } from './../../shared/task.service';
+import { LabelService } from './../../shared/label.service';
 import { Task } from './../../task';
+import { Label } from './../../label';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +17,7 @@ import { Router } from '@angular/router';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[] = [];
+  labels: Label[] = [];
 
   @HostListener('tdButtonClicked', ['$event'])
   taskAddedHandler(event: any) {
@@ -23,11 +26,21 @@ export class TaskListComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
+    private labelService: LabelService,
     private router: Router
   ) { }
 
   async ngOnInit(): Promise<void> {    
-    this.tasks = await this.taskService.getTasks();
+    const [
+      tasks,
+      labels
+    ] = await Promise.all([
+      this.taskService.getTasks(),
+      this.labelService.getLabels()
+    ]);
+
+    this.tasks = tasks;
+    this.labels = labels;
   }
 
 }

@@ -2,6 +2,38 @@
   display: block;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .task-list {
   margin: var(--gutter);
+  margin-top: 12px;
+
+  > li {
+    padding: 16px;
+    box-shadow: var(--fancy-box-shadow);
+    border: 1px solid var(--color-neutral-50);
+    border-radius: var(--td-border-radius);
+  
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.task-labels {
+  display: flex;
+
+  li {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
 }

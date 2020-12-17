@@ -188,7 +188,7 @@ export class TaskDateModal {
         >
           <td-heading
             type="h2"
-            text="Select a Date"
+            headingText="Select a Date"
           ></td-heading>
 
           <section class={dateInputClasses}>

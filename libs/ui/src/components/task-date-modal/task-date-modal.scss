@@ -80,7 +80,7 @@ p {
     font-size: var(--input-text-font-size);
     border: 1px solid var(--color-neutral-50);
     padding: var(--input-padding);
-    border-radius: var(--input-border-radius);
+    border-radius: var(--td-border-radius);
     width: 100%;
     outline: none;
 
@@ -99,7 +99,7 @@ p {
     color: var(--color-neutral-10);
     font-size: var(--input-text-font-size);
     border: 1px solid var(--color-neutral-50);
-    border-radius: var(--input-border-radius);
+    border-radius: var(--td-border-radius);
     box-shadow: var(--fancy-box-shadow);
     
     //Vertical center thanks to flex; overflowing content correctly scrolls

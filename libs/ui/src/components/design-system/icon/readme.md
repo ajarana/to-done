@@ -23,7 +23,9 @@
  - [date-selector](../../date-selector)
  - [task-form](../../task-form)
  - [task-labels](../../task-labels)
+ - [td-date](../../td-date)
  - [td-header](../../td-header)
+ - [td-task](../../td-task)
 
 ### Graph
 ```mermaid
@@ -31,7 +33,9 @@ graph TD;
   date-selector --> tdn-ui-icon
   task-form --> tdn-ui-icon
   task-labels --> tdn-ui-icon
+  td-date --> tdn-ui-icon
   td-header --> tdn-ui-icon
+  td-task --> tdn-ui-icon
   style tdn-ui-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

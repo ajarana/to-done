@@ -26,7 +26,7 @@ label {
   display: flex;
   padding: var(--input-padding);
   border: 1px solid var(--color-neutral-50);
-  border-radius: var(--input-border-radius);
+  border-radius: var(--td-border-radius);
   min-height: 43px;
 
   .label {
@@ -34,7 +34,7 @@ label {
     font-size: var(--xs-font-size);
     padding: 4px 7px 3px 10px;
     text-transform: uppercase;
-    border-radius: var(--input-border-radius);
+    border-radius: var(--td-border-radius);
     transition: var(--general-transition);
     transition-property: color, background;
     display: flex;

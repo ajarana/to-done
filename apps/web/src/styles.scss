@@ -14,11 +14,14 @@
   --regular-font-weight: 400;
   --medium-font-weight: 500;
 
+  --td-border-radius: 4px;
+  --td-text-line-height: 22px;
+
   --gutter: 0 25px;
   --section-heading-font-size: var(--xs-font-size);
   --input-text-font-size: var(--s-font-size);
   --input-padding: 8.5px 16.5px 9.5px;
-  --input-border-radius: 4px;
+
   --fancy-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.04);
   --button-padding: 8px 20px 9px;
   --default-box-sizing: border-box;

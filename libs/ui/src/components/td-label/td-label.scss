@@ -1,0 +1,20 @@
+:host {
+  display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
+}
+
+div {
+  color: white;
+  padding: 3px 10px 2px;
+  text-transform: uppercase;
+  border-radius: var(--td-border-radius);
+  font-size: var(--xs-font-size);
+}
+
+p {
+  margin: 0;
+  line-height: 18px;
+}

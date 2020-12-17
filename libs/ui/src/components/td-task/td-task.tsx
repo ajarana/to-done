@@ -6,26 +6,36 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class TdTask {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
-
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
-
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return `${this.first} ${this.middle}, ${this.last}`;
-  }
+  @Prop() thumbnailUrl: string;
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    const HeaderContent = (this.thumbnailUrl) 
+    ?
+    <img 
+      height="90"
+      src={this.thumbnailUrl}
+    />
+    :
+    <div class="placeholder-thumbnail">
+      <tdn-ui-icon name="image"></tdn-ui-icon>
+    </div>;
+
+    return (
+      <section>
+        <header>
+          { HeaderContent }
+        </header>
+
+        <slot name="task-labels"></slot>
+
+        <slot name="task-name"></slot>
+
+        <slot name="task-description"></slot>
+
+        <slot name="due-date"></slot>
+
+        <slot name="task-notes"></slot>
+      </section>
+    );
   }
 }
