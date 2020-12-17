@@ -20,14 +20,26 @@ label {
   margin-bottom: 24px;
 }
 
+@mixin subtract($property, $minuend, $subtrahend) {
+  #{$property}: calc(#{$minuend} - #{$subtrahend});
+}
+
 .labels {
   list-style: none;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
+
+  // I wish the following code was valid CSS. Things would be cleaner that way.
+  // display: grid;
+  // grid-auto-columns: repeat(auto-fill, min-content);
+
   padding: var(--input-padding);
   border: 1px solid var(--color-neutral-50);
   border-radius: var(--td-border-radius);
   min-height: 43px;
+
+  @include subtract(padding-top, 8.5px, 8px);
 
   .label {
     color: var(--color-neutral-10);
@@ -40,6 +52,7 @@ label {
     display: flex;
     align-items: center;
     font-weight: var(--regular-font-weight);
+    margin-top: 8px;
 
     tdn-ui-icon {
       margin-left: 11px;

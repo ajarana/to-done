@@ -3,8 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TaskFormComponent } from './task-form/task-form.component';
 
 const routes: Routes = [
-  { path: 'add-task',  component: TaskFormComponent },
-  { path: '**',   redirectTo: '/tasks' }
+  { path: '',  component: TaskFormComponent }
 ];
 
 @NgModule({

@@ -22,7 +22,7 @@ export class TdDate {
 
     const validDate = this.dateIsValid(date);
 
-    let contents = <div></div>;
+    let contents;
 
     if (validDate) {
       const month = date.getMonth();
@@ -35,9 +35,11 @@ export class TdDate {
         <div>
           <tdn-ui-icon
             name="calendar"
+            size="m"
+            color="app-text-secondary"
           ></tdn-ui-icon>
 
-          {month + 1}/{day}/{year}
+          <p>{month + 1}/{day}/{year}</p>
         </div>
       );
     }

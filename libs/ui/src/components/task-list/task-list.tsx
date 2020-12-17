@@ -38,24 +38,23 @@ export class TaskList {
           <td-task
             thumbnailUrl={thumbnailUrl}
           >
-            <td-heading
-              slot="task-name"
-              type="h2"
-              headingText={name}
-            ></td-heading>
-
             {(labels.length > 0) &&
               <ul class="task-labels" slot="task-labels">
                 {labels}
               </ul>
             }
 
+            <td-heading
+              slot="task-name"
+              type="h2"
+              headingText={name}
+            ></td-heading>
+
             {(description) &&
               <p slot="task-description">{description}</p>
             }
 
             {(dueDate) &&
-              // <div slot="due-date">{dueDate}</div>
               <td-date
                 slot="due-date"
                 date={dueDate}

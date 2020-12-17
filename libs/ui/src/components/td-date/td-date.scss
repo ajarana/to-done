@@ -1,3 +1,19 @@
 :host {
   display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
+}
+
+p {
+  font-size: var(--s-font-size);
+  color: var(--app-text-primary);
+  line-height: var(--td-text-line-height);
+  margin: 2px 0 0 8px;
+}
+
+div {
+  display: flex;
+  align-items: center;
 }

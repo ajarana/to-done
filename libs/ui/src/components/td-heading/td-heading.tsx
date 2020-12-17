@@ -1,4 +1,9 @@
-import { Component, h, Prop } from '@stencil/core';
+import { 
+  Component, 
+  h, 
+  Prop,
+  Host
+} from '@stencil/core';
 
 @Component({
   tag: 'td-heading',
@@ -20,9 +25,9 @@ export class TdHeading {
     }
 
     return (
-      <header>
+      <Host>
         {heading}
-      </header>
+      </Host>
     );
   }
 }

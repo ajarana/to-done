@@ -34,7 +34,7 @@ export class TdTask {
 
         <slot name="due-date"></slot>
 
-        <slot name="task-notes"></slot>
+        {/* <slot name="task-notes"></slot> */}
       </section>
     );
   }
