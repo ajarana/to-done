@@ -17,6 +17,7 @@
 ### Used by
 
  - [task-list](../task-list)
+ - [td-task-details](../td-task-details)
 
 ### Depends on
 
@@ -27,6 +28,7 @@
 graph TD;
   td-date --> tdn-ui-icon
   task-list --> td-date
+  td-task-details --> td-date
   style td-date fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

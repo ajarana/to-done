@@ -1,4 +1,10 @@
-import { Component, h, Prop } from '@stencil/core';
+import { 
+  Component, 
+  h, 
+  Prop,
+  Event,
+  EventEmitter
+} from '@stencil/core';
 
 @Component({
   tag: 'task-list',
@@ -10,38 +16,38 @@ export class TaskList {
 
   @Prop() labels: Array<any> = [];
 
+  @Event({
+    eventName: 'taskSelected',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) taskSelected: EventEmitter;
+
   render() {
     const tasks = this.tasks.map(task => {
       const {
+        id,
         name,
         thumbnailUrl,
         description,
-        labels: taskLabels,
+        labels: selectedLabels,
         dueDate,
-        notes
+        // notes
       } = task;
 
-      const labels = taskLabels.map((id: number) => {
-        const label = this.labels.find(label => label.id === id);
-
-        return (
-          <li>
-            <td-label
-              label={label}
-            ></td-label>
-          </li>
-        );
-      });
-
       return (
-        <li>
+        <li
+          onClick={() => this.taskSelected.emit(id)}
+        >
           <td-task
             thumbnailUrl={thumbnailUrl}
           >
-            {(labels.length > 0) &&
-              <ul class="task-labels" slot="task-labels">
-                {labels}
-              </ul>
+            {(selectedLabels.length > 0) &&
+              <td-labels
+                slot="task-labels"
+                labels={this.labels}
+                selectedLabels={selectedLabels}
+              ></td-labels>
             }
 
             <td-heading
@@ -51,7 +57,10 @@ export class TaskList {
             ></td-heading>
 
             {(description) &&
-              <p slot="task-description">{description}</p>
+              <td-text
+                slot="task-description"
+                description={description}
+              ></td-text>
             }
 
             {(dueDate) &&
@@ -61,9 +70,9 @@ export class TaskList {
               ></td-date>
             }
 
-            {(notes) &&
+            {/* {(notes) &&
               <div slot="task-notes">{notes}</div>
-            }
+            } */}
           </td-task>
         </li>
       );

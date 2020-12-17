@@ -4,5 +4,6 @@ export interface Task {
   labels: Array<any>,
   description: string,
   dueDate: string,
-  notes: string
+  notes: string,
+  complete: boolean
 }

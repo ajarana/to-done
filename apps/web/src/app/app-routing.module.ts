@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'task/:id',
+    loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
+  },
+  {
     path: 'tasks',
     loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)
   },
@@ -10,7 +14,11 @@ const routes: Routes = [
     path: 'add-task',
     loadChildren: () => import('./add-task/add-task.module').then(m => m.AddTaskModule)
   },
-  { path: '**',   redirectTo: '/tasks' }
+  {
+    path: 'task/:id/edit',
+    loadChildren: () => import('./edit-task/edit-task.module').then(m => m.EditTaskModule)
+  },
+  // { path: '**',   redirectTo: '/tasks' }
 ];
 
 @NgModule({

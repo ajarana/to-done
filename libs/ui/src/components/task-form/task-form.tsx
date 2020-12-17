@@ -5,7 +5,8 @@ import {
   Prop,
   Event, 
   EventEmitter,
-  Listen
+  Listen,
+  Watch
 } 
 from '@stencil/core';
 
@@ -18,10 +19,14 @@ import { classNames } from '../../utils';
 })
 export class TaskForm {
   fileInput: HTMLInputElement;
-  taskName: string = "";
-  description: string = "";
-  notes: string = "";
-  labelsSelected: Array<any> = [];
+
+  @State() taskName: string = "";
+
+  @State() description: string = "";
+
+  @State() notes: string = "";
+
+  @State() labelsSelected: Array<any> = [];
 
   @State() file: File;
 
@@ -33,14 +38,33 @@ export class TaskForm {
 
   @State() dueDate: string = "";
 
+  @Prop() task: any;
+
   @Prop() labels: Array<any>;
 
+  @Watch('task')
+  watchHandler(task: any) {
+    const {
+      description,
+      // dueDate,
+      labels,
+      name,
+      notes
+    } = task;
+
+    this.taskName = name;
+    this.description = description;
+    this.labelsSelected = labels;
+
+    this.notes = notes;
+  }
+
   @Event({
-    eventName: 'taskAdded',
+    eventName: 'taskChanged',
     composed: true,
     cancelable: true,
     bubbles: true,
-  }) taskAdded: EventEmitter;
+  }) taskChanged: EventEmitter;
 
   @Event({
     eventName: 'taskCancelled',
@@ -294,6 +318,7 @@ export class TaskForm {
 
           <task-labels
             labels={this.labels}
+            selectedLabelIds={this.labelsSelected}
           ></task-labels>
 
           <date-selector
@@ -317,22 +342,26 @@ export class TaskForm {
 
         <td-footer>
           <td-button 
+            slot="left-1"
             buttonText="Cancel"
             onClick={() => this.taskCancelled.emit()}
           ></td-button>
 
           <td-button 
+            slot="right-1"
             buttonText="Delete"
             type="danger-button"
           ></td-button>
 
           <td-button 
+            slot="right-2"
             buttonText="Save"
             type="success-button"
             handler={e => {
               e.preventDefault();
 
-              this.taskAdded.emit({
+              this.taskChanged.emit({
+                ...((this.task && this.task.id) && {id: this.task.id}),
                 name: this.taskName,
                 thumbnail: this.file,
                 labels: this.labelsSelected,

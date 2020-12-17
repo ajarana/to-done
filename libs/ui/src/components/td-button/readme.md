@@ -27,12 +27,14 @@
 
  - [task-date-modal](../task-date-modal)
  - [task-form](../task-form)
+ - [td-task-details](../td-task-details)
 
 ### Graph
 ```mermaid
 graph TD;
   task-date-modal --> td-button
   task-form --> td-button
+  td-task-details --> td-button
   style td-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

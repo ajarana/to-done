@@ -27,16 +27,16 @@ export class TaskFormComponent implements OnInit {
     private router: Router
   ) { }
 
-  @HostListener('taskAdded', ['$event'])
-  taskAddedHandler(event: any) {
-      const formFields = event.detail;
+  @HostListener('taskChanged', ['$event'])
+  taskChangedHandler(event: any) {
+    const formFields = event.detail;
 
-      this.upload(formFields);
+    this.upload(formFields);
   }
 
   @HostListener('taskCancelled', ['$event'])
   taskCancelledHandler(event: any) {
-      this.router.navigate(['/'])
+    this.router.navigate(['/tasks']);
   }
 
   async ngOnInit(): Promise<void> {    
@@ -52,22 +52,32 @@ export class TaskFormComponent implements OnInit {
     this.labels = labels;
   }
 
-  async upload(formFields: any) {
-    const {
-      thumbnail: file
-    } = formFields;
-
-    let taskFields = formFields;
+  async upload({
+    name, 
+    thumbnail: file,
+    description,
+    labels,
+    dueDate,
+    notes
+  }) {
+    let thumbnailUrl = "";
 
     if (file) {
       const fileRef = await this.storageService.upload(file);
 
-      const thumbnailUrl = await fileRef.getDownloadURL();
-  
-      taskFields = Object.assign(formFields, { thumbnailUrl });
+      thumbnailUrl = await fileRef.getDownloadURL();
     }
 
-    this.taskService.addTask(taskFields);
+    const fields = {
+      name, 
+      thumbnailUrl,
+      description,
+      labels,
+      dueDate,
+      notes
+    };
+
+    this.taskService.addTask(fields);
   }
 
 }

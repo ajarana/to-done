@@ -20,8 +20,15 @@ export class TaskListComponent implements OnInit {
   labels: Label[] = [];
 
   @HostListener('tdButtonClicked', ['$event'])
-  taskAddedHandler(event: any) {
-    this.router.navigate(['/add-task'])
+  tdButtonClickedHandler(event: any) {
+    this.router.navigate(['/add-task']);
+  }
+
+  @HostListener('taskSelected', ['$event'])
+  taskSelectedHandler(event: any) {
+    const id = event.detail;
+
+    this.router.navigate(['/task', id]);
   }
 
   constructor(
@@ -42,5 +49,9 @@ export class TaskListComponent implements OnInit {
     this.tasks = tasks;
     this.labels = labels;
   }
+
+  // navigateToTask(id: string) {
+  //   this.router.navigate(['/task', id]);
+  // }
 
 }

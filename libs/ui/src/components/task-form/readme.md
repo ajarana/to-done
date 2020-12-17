@@ -10,14 +10,15 @@
 | Property | Attribute | Description | Type    | Default     |
 | -------- | --------- | ----------- | ------- | ----------- |
 | `labels` | --        |             | `any[]` | `undefined` |
+| `task`   | `task`    |             | `any`   | `undefined` |
 
 
 ## Events
 
 | Event           | Description | Type               |
 | --------------- | ----------- | ------------------ |
-| `taskAdded`     |             | `CustomEvent<any>` |
 | `taskCancelled` |             | `CustomEvent<any>` |
+| `taskChanged`   |             | `CustomEvent<any>` |
 
 
 ## Dependencies

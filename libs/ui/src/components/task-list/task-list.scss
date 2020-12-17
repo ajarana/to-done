@@ -37,13 +37,3 @@ img {
   width: 100%;
   object-fit: cover;
 }
-
-.task-labels {
-  display: flex;
-
-  li {
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-  }
-}

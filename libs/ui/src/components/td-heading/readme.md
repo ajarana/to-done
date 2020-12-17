@@ -19,12 +19,14 @@
 
  - [task-date-modal](../task-date-modal)
  - [task-list](../task-list)
+ - [td-task-details](../td-task-details)
 
 ### Graph
 ```mermaid
 graph TD;
   task-date-modal --> td-heading
   task-list --> td-heading
+  td-task-details --> td-heading
   style td-heading fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

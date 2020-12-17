@@ -15,6 +15,7 @@ export namespace Components {
     }
     interface TaskForm {
         "labels": Array<any>;
+        "task": any;
     }
     interface TaskLabelModal {
         "currentlySelectedLabelIds": Array<any>;
@@ -22,6 +23,7 @@ export namespace Components {
     }
     interface TaskLabels {
         "labels": Array<any>;
+        "selectedLabelIds": Array<any>;
     }
     interface TaskList {
         "labels": Array<any>;
@@ -39,6 +41,7 @@ export namespace Components {
         "last": string;
     }
     interface TdHeader {
+        "copy": string;
         "headerCopy": string;
     }
     interface TdHeading {
@@ -48,8 +51,20 @@ export namespace Components {
     interface TdLabel {
         "label": any;
     }
+    interface TdLabels {
+        "labels": Array<any>;
+        "selectedLabels": Array<any>;
+    }
     interface TdTask {
         "thumbnailUrl": string;
+    }
+    interface TdTaskDetails {
+        "complete": boolean;
+        "labels": Array<any>;
+        "task": any;
+    }
+    interface TdText {
+        "description": string;
     }
     interface TdnUiIcon {
         /**
@@ -144,11 +159,29 @@ declare global {
         prototype: HTMLTdLabelElement;
         new (): HTMLTdLabelElement;
     };
+    interface HTMLTdLabelsElement extends Components.TdLabels, HTMLStencilElement {
+    }
+    var HTMLTdLabelsElement: {
+        prototype: HTMLTdLabelsElement;
+        new (): HTMLTdLabelsElement;
+    };
     interface HTMLTdTaskElement extends Components.TdTask, HTMLStencilElement {
     }
     var HTMLTdTaskElement: {
         prototype: HTMLTdTaskElement;
         new (): HTMLTdTaskElement;
+    };
+    interface HTMLTdTaskDetailsElement extends Components.TdTaskDetails, HTMLStencilElement {
+    }
+    var HTMLTdTaskDetailsElement: {
+        prototype: HTMLTdTaskDetailsElement;
+        new (): HTMLTdTaskDetailsElement;
+    };
+    interface HTMLTdTextElement extends Components.TdText, HTMLStencilElement {
+    }
+    var HTMLTdTextElement: {
+        prototype: HTMLTdTextElement;
+        new (): HTMLTdTextElement;
     };
     interface HTMLTdnUiIconElement extends Components.TdnUiIcon, HTMLStencilElement {
     }
@@ -169,7 +202,10 @@ declare global {
         "td-header": HTMLTdHeaderElement;
         "td-heading": HTMLTdHeadingElement;
         "td-label": HTMLTdLabelElement;
+        "td-labels": HTMLTdLabelsElement;
         "td-task": HTMLTdTaskElement;
+        "td-task-details": HTMLTdTaskDetailsElement;
+        "td-text": HTMLTdTextElement;
         "tdn-ui-icon": HTMLTdnUiIconElement;
     }
 }
@@ -184,8 +220,9 @@ declare namespace LocalJSX {
     }
     interface TaskForm {
         "labels"?: Array<any>;
-        "onTaskAdded"?: (event: CustomEvent<any>) => void;
         "onTaskCancelled"?: (event: CustomEvent<any>) => void;
+        "onTaskChanged"?: (event: CustomEvent<any>) => void;
+        "task"?: any;
     }
     interface TaskLabelModal {
         "currentlySelectedLabelIds"?: Array<any>;
@@ -196,9 +233,11 @@ declare namespace LocalJSX {
     interface TaskLabels {
         "labels"?: Array<any>;
         "onTaskLabelsSelected"?: (event: CustomEvent<any>) => void;
+        "selectedLabelIds"?: Array<any>;
     }
     interface TaskList {
         "labels"?: Array<any>;
+        "onTaskSelected"?: (event: CustomEvent<any>) => void;
         "tasks"?: Array<any>;
     }
     interface TdButton {
@@ -214,7 +253,9 @@ declare namespace LocalJSX {
         "last"?: string;
     }
     interface TdHeader {
+        "copy"?: string;
         "headerCopy"?: string;
+        "onHeaderClicked"?: (event: CustomEvent<any>) => void;
     }
     interface TdHeading {
         "headingText"?: string;
@@ -223,8 +264,22 @@ declare namespace LocalJSX {
     interface TdLabel {
         "label"?: any;
     }
+    interface TdLabels {
+        "labels"?: Array<any>;
+        "selectedLabels"?: Array<any>;
+    }
     interface TdTask {
         "thumbnailUrl"?: string;
+    }
+    interface TdTaskDetails {
+        "complete"?: boolean;
+        "labels"?: Array<any>;
+        "onTaskEdit"?: (event: CustomEvent<any>) => void;
+        "onTaskMarkedComplete"?: (event: CustomEvent<any>) => void;
+        "task"?: any;
+    }
+    interface TdText {
+        "description"?: string;
     }
     interface TdnUiIcon {
         /**
@@ -258,7 +313,10 @@ declare namespace LocalJSX {
         "td-header": TdHeader;
         "td-heading": TdHeading;
         "td-label": TdLabel;
+        "td-labels": TdLabels;
         "td-task": TdTask;
+        "td-task-details": TdTaskDetails;
+        "td-text": TdText;
         "tdn-ui-icon": TdnUiIcon;
     }
 }
@@ -278,7 +336,10 @@ declare module "@stencil/core" {
             "td-header": LocalJSX.TdHeader & JSXBase.HTMLAttributes<HTMLTdHeaderElement>;
             "td-heading": LocalJSX.TdHeading & JSXBase.HTMLAttributes<HTMLTdHeadingElement>;
             "td-label": LocalJSX.TdLabel & JSXBase.HTMLAttributes<HTMLTdLabelElement>;
+            "td-labels": LocalJSX.TdLabels & JSXBase.HTMLAttributes<HTMLTdLabelsElement>;
             "td-task": LocalJSX.TdTask & JSXBase.HTMLAttributes<HTMLTdTaskElement>;
+            "td-task-details": LocalJSX.TdTaskDetails & JSXBase.HTMLAttributes<HTMLTdTaskDetailsElement>;
+            "td-text": LocalJSX.TdText & JSXBase.HTMLAttributes<HTMLTdTextElement>;
             "tdn-ui-icon": LocalJSX.TdnUiIcon & JSXBase.HTMLAttributes<HTMLTdnUiIconElement>;
         }
     }

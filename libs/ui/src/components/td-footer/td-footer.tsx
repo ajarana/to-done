@@ -15,11 +15,17 @@ export class TdFooter {
   render() {
     return (
       <footer>
-        <slot />
+        <section>
+          <slot name="left-1" />
 
-        <slot />
+          <slot name="left-2" />
+        </section>
 
-        <slot />
+        <section>
+          <slot name="right-1" />
+
+          <slot name="right-2" />
+        </section>
       </footer>
     );
   }

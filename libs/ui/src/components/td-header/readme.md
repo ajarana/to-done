@@ -9,7 +9,15 @@
 
 | Property     | Attribute     | Description | Type     | Default |
 | ------------ | ------------- | ----------- | -------- | ------- |
+| `copy`       | `copy`        |             | `string` | `""`    |
 | `headerCopy` | `header-copy` |             | `string` | `""`    |
+
+
+## Events
+
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `headerClicked` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

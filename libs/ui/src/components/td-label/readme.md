@@ -16,12 +16,12 @@
 
 ### Used by
 
- - [task-list](../task-list)
+ - [td-labels](../td-labels)
 
 ### Graph
 ```mermaid
 graph TD;
-  task-list --> td-label
+  td-labels --> td-label
   style td-label fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

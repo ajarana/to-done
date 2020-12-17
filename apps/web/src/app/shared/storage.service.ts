@@ -11,7 +11,6 @@ export class StorageService {
   constructor() { }
 
   async upload(file) {
-    //Emergency TODO: ensure you're only uploading images.
     const {
       name
     } = file;
@@ -23,7 +22,7 @@ export class StorageService {
     try {
       await fileRef.put(file);
 
-      console.log("Upload successful!");
+      console.log("Upload successful!", fileRef);
 
       return fileRef;
     }

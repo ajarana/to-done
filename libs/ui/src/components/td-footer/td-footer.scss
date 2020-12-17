@@ -22,4 +22,12 @@ footer {
   ::slotted(td-button:last-child) {
     margin-left: 16px;
   }
+
+  section {
+    display: flex;
+
+    &:last-child {
+      margin-left: auto;
+    }
+  }
 }

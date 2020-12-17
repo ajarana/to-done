@@ -1,4 +1,9 @@
-import { Component, h, Prop } from '@stencil/core';
+import { 
+  Component, 
+  h, 
+  Prop,
+  State
+} from '@stencil/core';
 
 @Component({
   tag: 'td-task',
@@ -8,12 +13,17 @@ import { Component, h, Prop } from '@stencil/core';
 export class TdTask {
   @Prop() thumbnailUrl: string;
 
+  @State() thumbnailError: boolean = false;
+
   render() {
-    const HeaderContent = (this.thumbnailUrl) 
+    const HeaderContent = (this.thumbnailUrl && !this.thumbnailError) 
     ?
     <img 
       height="90"
       src={this.thumbnailUrl}
+      onError={() => {
+        this.thumbnailError = true;
+      }}
     />
     :
     <div class="placeholder-thumbnail">
@@ -32,9 +42,9 @@ export class TdTask {
 
         <slot name="task-description"></slot>
 
-        <slot name="due-date"></slot>
-
-        {/* <slot name="task-notes"></slot> */}
+        <footer>
+          <slot name="due-date"></slot>
+        </footer>
       </section>
     );
   }

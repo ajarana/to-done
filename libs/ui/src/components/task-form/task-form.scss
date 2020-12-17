@@ -1,9 +1,23 @@
 :host {
   display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
 }
 
-* {
-  box-sizing: var(--default-box-sizing);
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--td-header-height));
+
+  .task-form {
+    margin-bottom: 7px;
+  }
+
+  td-footer {
+    margin-top: auto;
+  }
 }
 
 label {
@@ -25,7 +39,8 @@ textarea {
 .task-form {
   margin-top: 11px;
   padding: var(--gutter);
-  padding-bottom: 7px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   background: var(--color-neutral-100);
   border-top: 1px solid var(--color-neutral-50);
   box-shadow: var(--fancy-box-shadow);
@@ -64,10 +79,6 @@ textarea {
         }
       }
     } 
-
-    &:first-of-type {
-      padding-top: 25px;
-    }
 
     &:not(:last-of-type) {
       margin-bottom: 24px;

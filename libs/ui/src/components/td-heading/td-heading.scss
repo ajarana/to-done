@@ -12,3 +12,10 @@ h2 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+h3 {
+  font-weight: var(--medium-font-weight);
+  font-size: var(--xs-font-size);
+  color: var(--color-neutral-25);
+  margin: 0;
+}

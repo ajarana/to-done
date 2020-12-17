@@ -1,5 +1,9 @@
 :host {
   display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
 }
 
 tdn-ui-icon {
@@ -8,6 +12,7 @@ tdn-ui-icon {
 }
 
 header {
+  height: var(--td-header-height);
   border-bottom: 1px solid var(--color-neutral-50);
   background: var(--color-neutral-100);
 
@@ -18,7 +23,7 @@ header {
 
   .container {
     margin: var(--gutter);
-    height: 70px;
+    height: 100%;
     display: flex;
     align-items: center;
   }

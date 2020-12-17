@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type    | Default     |
-| -------- | --------- | ----------- | ------- | ----------- |
-| `labels` | --        |             | `any[]` | `undefined` |
+| Property           | Attribute | Description | Type    | Default     |
+| ------------------ | --------- | ----------- | ------- | ----------- |
+| `labels`           | --        |             | `any[]` | `undefined` |
+| `selectedLabelIds` | --        |             | `any[]` | `[]`        |
 
 
 ## Events

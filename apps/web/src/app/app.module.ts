@@ -6,7 +6,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { EditTaskModule } from './edit-task/edit-task.module';
-import { TaskModule } from './task/task.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,8 +13,7 @@ import { TaskModule } from './task/task.module';
     BrowserModule, 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), 
     AppRoutingModule, 
-    EditTaskModule, 
-    TaskModule
+    EditTaskModule
   ],
   providers: [],
   bootstrap: [AppComponent],

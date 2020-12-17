@@ -1,8 +1,19 @@
 :host {
   display: block;
+  height: 100%;
 
   * {
     box-sizing: var(--default-box-sizing);
+  }
+}
+
+section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  footer {
+    margin-top: auto;
   }
 }
 
@@ -36,7 +47,7 @@ header {
 }
 
 ::slotted([slot=task-name]) {
-  line-height: var(--td-text-line-height);
+  line-height: 24px;
   margin-bottom: 4px;
   font-weight: var(--medium-font-weight);
 }

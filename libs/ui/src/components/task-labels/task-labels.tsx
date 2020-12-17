@@ -17,7 +17,7 @@ import { classNames } from '../../utils';
 export class TaskLabels {
   @Prop() labels: Array<any>;
 
-  @State() selectedLabelIds: Array<any> = [];
+  @Prop() selectedLabelIds: Array<any> = [];
 
   @State() showModal: Boolean;
 
@@ -75,7 +75,7 @@ export class TaskLabels {
         </li>
       );
     });
-    
+
     return (
       <div
         class="task-labels"

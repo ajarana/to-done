@@ -21,7 +21,12 @@ export class TdHeading {
     if (this.type === "h2") {
       heading = (
         <h2>{this.headingText}</h2>
-      )
+      );
+    }
+    else if (this.type === "h3") {
+      heading = (
+        <h3>{this.headingText}</h3>
+      );
     }
 
     return (

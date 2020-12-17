@@ -26,6 +26,7 @@
  - [td-date](../../td-date)
  - [td-header](../../td-header)
  - [td-task](../../td-task)
+ - [td-task-details](../../td-task-details)
 
 ### Graph
 ```mermaid
@@ -36,6 +37,7 @@ graph TD;
   td-date --> tdn-ui-icon
   td-header --> tdn-ui-icon
   td-task --> tdn-ui-icon
+  td-task-details --> tdn-ui-icon
   style tdn-ui-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

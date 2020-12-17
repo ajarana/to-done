@@ -1,0 +1,12 @@
+:host {
+  display: block;
+
+  * {
+    box-sizing: var(--default-box-sizing);
+  }
+}
+
+p {
+  margin: 0;
+  line-height: var(--td-text-line-height);
+}
