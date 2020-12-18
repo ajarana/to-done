@@ -14,6 +14,8 @@ section {
 
   footer {
     margin-top: auto;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -37,7 +39,6 @@ header {
   padding: 9px;
 
   tdn-ui-icon {
-    font-size: 18px;
     margin: auto 0 0 auto;
   }
 }
@@ -64,4 +65,8 @@ header {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+::slotted([slot=marked-complete]) {
+  margin-left: auto;
 }

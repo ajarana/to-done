@@ -32,7 +32,8 @@ export class TaskList {
         thumbnailUrl,
         description,
         labels: selectedLabels,
-        dueDate
+        dueDate,
+        complete
       } = task;
 
       return (
@@ -69,6 +70,16 @@ export class TaskList {
                 slot="due-date"
                 date={dueDate}
               ></td-date>
+            }
+
+            {(complete) &&
+              <tdn-ui-icon
+                slot="marked-complete"
+                name="check"
+                color="color-green"
+                size="s"
+                lazy={true}
+              ></tdn-ui-icon>
             }
           </td-task>
         </li>

@@ -5,5 +5,8 @@ export interface Task {
   description: string,
   dueDate: string,
   notes: string,
-  complete: boolean
+  complete: boolean,
+  createdAt: string,
+  userId: string
+  id: string
 }

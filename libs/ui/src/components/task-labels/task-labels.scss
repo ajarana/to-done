@@ -57,7 +57,8 @@ p {
   .label {
     color: var(--color-neutral-10);
     font-size: var(--xs-font-size);
-    padding: 4px 7px 3px 10px;
+    padding: 0 7px 0 10px;
+    height: 24px;
     text-transform: uppercase;
     border-radius: var(--td-border-radius);
     transition: var(--general-transition);

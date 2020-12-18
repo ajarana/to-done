@@ -29,9 +29,9 @@
 - [td-heading](../td-heading)
 - [td-text](../td-text)
 - [td-date](../td-date)
+- [tdn-ui-icon](../design-system/icon)
 - [td-header](../td-header)
 - [td-button](../td-button)
-- [tdn-ui-icon](../design-system/icon)
 
 ### Graph
 ```mermaid
@@ -41,9 +41,9 @@ graph TD;
   task-list --> td-heading
   task-list --> td-text
   task-list --> td-date
+  task-list --> tdn-ui-icon
   task-list --> td-header
   task-list --> td-button
-  task-list --> tdn-ui-icon
   td-task --> tdn-ui-icon
   td-labels --> td-label
   td-date --> tdn-ui-icon

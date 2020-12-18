@@ -28,7 +28,7 @@ export class TdTask {
     />
     :
     <div class="placeholder-thumbnail">
-      <tdn-ui-icon name="image" lazy={true}></tdn-ui-icon>
+      <tdn-ui-icon name="image" size="xl" lazy={true}></tdn-ui-icon>
     </div>;
 
     return (
@@ -45,6 +45,8 @@ export class TdTask {
 
         <footer>
           <slot name="due-date"></slot>
+
+          <slot name="marked-complete"></slot>
         </footer>
       </section>
     );

@@ -10,6 +10,12 @@ p {
   margin: 0;
   line-height: var(--td-text-line-height);
   color: var(--app-text-primary);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .secondary {

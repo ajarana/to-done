@@ -248,7 +248,7 @@ export class TaskForm {
     else {
       FancyUploadContents = (
         <div>
-          <tdn-ui-icon name="upload" lazy={true} />
+          <tdn-ui-icon name="upload" size="m" lazy={true} />
 
           <h3 class="section-heading">
             <p>Click to upload</p>
@@ -336,6 +336,7 @@ export class TaskForm {
             >
               <label class="section-heading" htmlFor="taskName">TASK NAME*</label>
 
+              {/* TODO: inputs require more validation. */}
               <input 
                 id="taskName"
                 value={this.taskName}
@@ -343,6 +344,7 @@ export class TaskForm {
                 onBlur={() => this.validateTaskName()}
                 placeholder="e.g. Turn work in on time"
                 maxlength={50}
+                pattern="\S(?:\s*\S){3}.*\S"
               />
 
               {(this.taskNameError) &&

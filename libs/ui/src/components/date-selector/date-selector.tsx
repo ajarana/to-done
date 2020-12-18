@@ -56,7 +56,7 @@ export class DateSelector {
           type="button"
           onClick={() => this.toggleModal()}
         >
-          <tdn-ui-icon name="calendar" lazy={true}></tdn-ui-icon>
+          <tdn-ui-icon name="calendar" size="m" lazy={true}></tdn-ui-icon>
 
           {(this.date) && 
             <div>{month + 1}/{day}/{year}</div>

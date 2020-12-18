@@ -83,9 +83,6 @@ export class TaskLabels {
       >
         <label class="section-heading">LABELS</label>
 
-        {/* <ul class="labels">
-          {selectedLabels}
-        </ul> */}
         <div class="labels">
           {selectedLabels}
         </div>
