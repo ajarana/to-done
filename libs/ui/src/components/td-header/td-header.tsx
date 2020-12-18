@@ -31,7 +31,10 @@ export class TdHeader {
             this.headerClicked.emit();
           }}
         >
-          <tdn-ui-icon name="logo"></tdn-ui-icon>
+          <tdn-ui-icon 
+            name="logo"
+            size="xl"
+          ></tdn-ui-icon>
 
           <p class="copy">
             {this.headerCopy}

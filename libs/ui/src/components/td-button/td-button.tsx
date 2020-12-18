@@ -20,6 +20,8 @@ export class TdButton {
 
   @Prop() type: string = "";
 
+  @Prop() iconName: string = "";
+
   @Event({
     eventName: 'tdButtonClicked',
     composed: true,
@@ -46,7 +48,9 @@ export class TdButton {
         class={classes}
         onClick={e => this.onClickHandler(e)}
       >
-        {this.buttonText}
+        <slot name="icon" />
+
+        <div>{this.buttonText}</div>
       </button>
     );
   }

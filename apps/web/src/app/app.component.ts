@@ -17,9 +17,7 @@ export class AppComponent implements OnInit {
 
   @HostListener('headerClicked', ['$event'])
   taskEditHandler(event: any) {
-    // TODO: Only navigates to current route. Change the behavior here once more requirements come in.
-
-    this.router.navigate([this.router.url]);
+    // TODO: Change the behavior here once more requirements come in.
   }
 
   async ngOnInit() {

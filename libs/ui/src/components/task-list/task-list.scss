@@ -37,3 +37,21 @@ img {
   width: 100%;
   object-fit: cover;
 }
+
+.task-list-container {
+  min-height: calc(100vh - var(--td-header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+td-text {
+  margin: var(--gutter);
+  text-align: center;
+}
+
+td-header {
+  tdn-ui-icon {
+    color: white;
+  }
+}

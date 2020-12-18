@@ -80,7 +80,7 @@ export class TdTaskDetails {
             {description
               ?
               <td-text
-                description={description}
+                text={description}
               ></td-text>
               :
               <td-button
@@ -151,7 +151,7 @@ export class TdTaskDetails {
             {notes
               ?
               <td-text
-                description={notes}
+                text={notes}
               ></td-text>
               :
               <td-button

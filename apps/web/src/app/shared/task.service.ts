@@ -38,7 +38,7 @@ export class TaskService {
 
     await ref.set(data);
 
-    console.log("Added doc!");
+    console.log("Added task!");
   }
 
   async setTask(id: string, data: any) {
@@ -46,9 +46,16 @@ export class TaskService {
 
     await ref.set(data, { merge: true });
 
-    console.log("Set doc!");
+    console.log("Set task!");
 
     return data;
+  }
+
+  async deleteTask(id: string) {
+    const doc = await this.db.collection("tasks").doc(id)
+    .delete();
+
+    console.log("Task deleted!");
   }
 
   async toggleComplete(id: string, complete: boolean) {

@@ -50,8 +50,4 @@ export class TaskListComponent implements OnInit {
     this.labels = labels;
   }
 
-  // navigateToTask(id: string) {
-  //   this.router.navigate(['/task', id]);
-  // }
-
 }

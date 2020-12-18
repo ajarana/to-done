@@ -11,6 +11,7 @@
 | ------------ | ------------- | ----------- | ---------- | ---------- |
 | `buttonText` | `button-text` |             | `string`   | `""`       |
 | `handler`    | --            |             | `Function` | `() => {}` |
+| `iconName`   | `icon-name`   |             | `string`   | `""`       |
 | `type`       | `type`        |             | `string`   | `""`       |
 
 

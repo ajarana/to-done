@@ -6,12 +6,12 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class TdText {
-  @Prop() description: string = "";
+  @Prop() text: string = "";
 
   render() {
     return (
       <p>
-        {this.description}
+        {this.text}
       </p>
     )
   }

@@ -31,8 +31,7 @@ export class TaskList {
         thumbnailUrl,
         description,
         labels: selectedLabels,
-        dueDate,
-        // notes
+        dueDate
       } = task;
 
       return (
@@ -59,7 +58,7 @@ export class TaskList {
             {(description) &&
               <td-text
                 slot="task-description"
-                description={description}
+                text={description}
               ></td-text>
             }
 
@@ -69,19 +68,26 @@ export class TaskList {
                 date={dueDate}
               ></td-date>
             }
-
-            {/* {(notes) &&
-              <div slot="task-notes">{notes}</div>
-            } */}
           </td-task>
         </li>
       );
     });
 
     return (
-      <ul class="task-list">
-        {tasks}
-      </ul>
+      <div class="task-list-container">
+        {(tasks && tasks.length > 0)
+            ?
+            <ul class="task-list">
+              {tasks}
+            </ul>
+            :
+            <div>
+              <td-text
+                text="Nothing here, yet! Add a task to get started."
+              ></td-text>
+            </div>
+          }
+      </div>
     );
   }
 }

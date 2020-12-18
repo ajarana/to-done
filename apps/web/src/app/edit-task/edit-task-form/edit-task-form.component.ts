@@ -34,6 +34,15 @@ export class EditTaskFormComponent implements OnInit {
     this.upload(formFields);
   }
 
+  @HostListener('taskDeleted', ['$event'])
+  async taskDeletedHandler(event: any) {
+    const id = event.detail && event.detail.id;
+
+    await this.taskService.deleteTask(id);
+
+    this.router.navigate(['/tasks']);
+  }
+
   @HostListener('taskCancelled', ['$event'])
   taskCancelledHandler(event: any) {
     this.router.navigate(['/tasks']);

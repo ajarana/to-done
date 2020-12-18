@@ -34,6 +34,11 @@ export class TaskFormComponent implements OnInit {
     this.upload(formFields);
   }
 
+  @HostListener('taskDeleted', ['$event'])
+  async taskDeletedHandler(event: any) {
+    this.router.navigate(['/tasks']);
+  }
+
   @HostListener('taskCancelled', ['$event'])
   taskCancelledHandler(event: any) {
     this.router.navigate(['/tasks']);

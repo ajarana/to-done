@@ -67,6 +67,13 @@ export class TaskForm {
   }) taskChanged: EventEmitter;
 
   @Event({
+    eventName: 'taskDeleted',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) taskDeleted: EventEmitter;
+
+  @Event({
     eventName: 'taskCancelled',
     composed: true,
     cancelable: true,
@@ -256,6 +263,8 @@ export class TaskForm {
       );
     }
 
+    const taskId = this.task && this.task.id;
+
     return (
       <main>
         <form class="task-form">
@@ -286,20 +295,8 @@ export class TaskForm {
             <div 
               class={fancyUploadClasses}
             >
-              {/* <img 
-                class="preview-image"
-                src={this.previewSrc}
-              /> */}
-
               {FancyUploadContents}
             </div>
-
-            {/* <div
-              class="drop-zone"
-              onDragLeave={e => this.onDragLeave(e)}
-              onDragOver={e => this.onDragOver(e)}
-              onDrop={e => this.onDrop(e)}
-            ></div> */}
           </section>
 
           <section
@@ -344,13 +341,16 @@ export class TaskForm {
           <td-button 
             slot="left-1"
             buttonText="Cancel"
-            onClick={() => this.taskCancelled.emit()}
+            handler={() => this.taskCancelled.emit()}
           ></td-button>
 
           <td-button 
             slot="right-1"
             buttonText="Delete"
             type="danger-button"
+            handler={() => this.taskDeleted.emit({
+              ...(taskId && {id: taskId}) 
+            })}
           ></td-button>
 
           <td-button 
@@ -361,7 +361,7 @@ export class TaskForm {
               e.preventDefault();
 
               this.taskChanged.emit({
-                ...((this.task && this.task.id) && {id: this.task.id}),
+                ...(taskId && {id: taskId}),
                 name: this.taskName,
                 thumbnail: this.file,
                 labels: this.labelsSelected,

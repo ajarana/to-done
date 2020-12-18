@@ -32,6 +32,7 @@ export namespace Components {
     interface TdButton {
         "buttonText": string;
         "handler": Function;
+        "iconName": string;
         "type": string;
     }
     interface TdDate {
@@ -64,7 +65,7 @@ export namespace Components {
         "task": any;
     }
     interface TdText {
-        "description": string;
+        "text": string;
     }
     interface TdnUiIcon {
         /**
@@ -222,6 +223,7 @@ declare namespace LocalJSX {
         "labels"?: Array<any>;
         "onTaskCancelled"?: (event: CustomEvent<any>) => void;
         "onTaskChanged"?: (event: CustomEvent<any>) => void;
+        "onTaskDeleted"?: (event: CustomEvent<any>) => void;
         "task"?: any;
     }
     interface TaskLabelModal {
@@ -243,6 +245,7 @@ declare namespace LocalJSX {
     interface TdButton {
         "buttonText"?: string;
         "handler"?: Function;
+        "iconName"?: string;
         "onTdButtonClicked"?: (event: CustomEvent<any>) => void;
         "type"?: string;
     }
@@ -279,7 +282,7 @@ declare namespace LocalJSX {
         "task"?: any;
     }
     interface TdText {
-        "description"?: string;
+        "text"?: string;
     }
     interface TdnUiIcon {
         /**

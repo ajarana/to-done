@@ -19,6 +19,7 @@
 | --------------- | ----------- | ------------------ |
 | `taskCancelled` |             | `CustomEvent<any>` |
 | `taskChanged`   |             | `CustomEvent<any>` |
+| `taskDeleted`   |             | `CustomEvent<any>` |
 
 
 ## Dependencies
