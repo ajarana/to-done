@@ -6,6 +6,8 @@
   }
 }
 
+$breakpoint: 1200px;
+
 main {
   display: flex;
   flex-direction: column;
@@ -19,16 +21,27 @@ main {
     margin-top: auto;
   }
 
-  @media(min-width: 592px) {
+  @media(min-width: $breakpoint) {
     td-footer {
       display: none;
     }
   }
 }
 
+// Hidden but still visible to screen readers
+.hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
 label {
   display: block;
-  margin-bottom: 7px;
 }
 
 p {
@@ -42,14 +55,21 @@ textarea {
   display: block;
 }
 
+$breakpoint: 1200px;
+$max-width: 592px;
+
 .task-form {
   margin-top: 11px;
-  padding: var(--gutter);
+  padding: 25px;
   padding-top: 25px;
   padding-bottom: 25px;
   background: var(--color-neutral-100);
   border-top: 1px solid var(--color-neutral-50);
   box-shadow: var(--fancy-box-shadow);
+  width: 100%;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
 
   .task-form-section {
     input, textarea {
@@ -89,6 +109,16 @@ textarea {
     &:not(:last-of-type) {
       margin-bottom: 24px;
     }
+  }
+
+  @media (min-width: $max-width) {
+    border: var(--td-border);
+    border-radius: var(--td-border-radius);
+  }
+
+  @media (min-width: $breakpoint) {
+    margin-top: 48px;
+    padding: 56px;
   }
 }
 
@@ -131,6 +161,18 @@ textarea {
     position: relative;
   }
 
+  .section-heading {
+    margin: 0;
+
+    p {
+      margin: 0;
+    }
+
+    p:last-child {
+      display: none;
+    }
+  }
+
   &.uploaded {
     > div {
       display: flex;
@@ -152,6 +194,18 @@ textarea {
       }
     }
   }
+
+  @media (min-width: $breakpoint) {
+    .section-heading {  
+      p:first-child {
+        display: none;
+      }
+  
+      p:last-child {
+        display: block;
+      }
+    }
+  }
 }
 
 #fileUpload {
@@ -165,4 +219,6 @@ textarea {
   font-size: var(--section-heading-font-size);
   color: var(--color-neutral-25);
   font-weight: normal;
+  margin-bottom: 7px;
+  font-weight: var(--medium-font-weight);
 }

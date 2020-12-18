@@ -91,6 +91,21 @@ export class TdTaskDetails {
         <td-header
           headerCopy={name}
         >
+          <td-text
+            slot="r-left-1"
+            text="To Done"
+          ></td-text>
+
+          <td-text
+            slot="r-left-2"
+            text={name}
+          ></td-text>
+
+          <td-text
+            slot="r-middle-1"
+            text={name}
+          ></td-text>
+
           <td-button 
             slot="r-right-1"
             buttonText="Edit"

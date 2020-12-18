@@ -12,6 +12,7 @@ label {
 
 .section-heading {
   font-size: var(--section-heading-font-size);
+  font-weight: var(--medium-font-weight);
   color: var(--color-neutral-25);
   margin-bottom: 7px;
 }
@@ -27,6 +28,7 @@ label {
 .labels {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
 

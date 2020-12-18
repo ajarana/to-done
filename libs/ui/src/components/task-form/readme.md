@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type    | Default     |
-| -------- | --------- | ----------- | ------- | ----------- |
-| `labels` | --        |             | `any[]` | `undefined` |
-| `task`   | `task`    |             | `any`   | `undefined` |
+| Property | Attribute | Description | Type      | Default     |
+| -------- | --------- | ----------- | --------- | ----------- |
+| `edit`   | `edit`    |             | `boolean` | `undefined` |
+| `labels` | --        |             | `any[]`   | `undefined` |
+| `task`   | `task`    |             | `any`     | `undefined` |
 
 
 ## Events
@@ -29,6 +30,7 @@
 - [td-button](../td-button)
 - [tdn-ui-icon](../design-system/icon)
 - [td-header](../td-header)
+- [td-text](../td-text)
 - [task-labels](../task-labels)
 - [date-selector](../date-selector)
 - [td-footer](../td-footer)
@@ -39,12 +41,14 @@ graph TD;
   task-form --> td-button
   task-form --> tdn-ui-icon
   task-form --> td-header
+  task-form --> td-text
   task-form --> task-labels
   task-form --> date-selector
   task-form --> td-footer
   td-header --> tdn-ui-icon
   task-labels --> tdn-ui-icon
   date-selector --> tdn-ui-icon
+  date-selector --> td-text
   date-selector --> task-date-modal
   task-date-modal --> td-heading
   task-date-modal --> td-button

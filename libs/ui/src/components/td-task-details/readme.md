@@ -27,9 +27,9 @@
 
 - [tdn-ui-icon](../design-system/icon)
 - [td-header](../td-header)
+- [td-text](../td-text)
 - [td-button](../td-button)
 - [td-heading](../td-heading)
-- [td-text](../td-text)
 - [td-labels](../td-labels)
 - [td-date](../td-date)
 - [td-footer](../td-footer)
@@ -39,9 +39,9 @@
 graph TD;
   td-task-details --> tdn-ui-icon
   td-task-details --> td-header
+  td-task-details --> td-text
   td-task-details --> td-button
   td-task-details --> td-heading
-  td-task-details --> td-text
   td-task-details --> td-labels
   td-task-details --> td-date
   td-task-details --> td-footer

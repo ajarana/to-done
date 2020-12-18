@@ -14,6 +14,7 @@ export namespace Components {
         "currentlySelectedDate": string;
     }
     interface TaskForm {
+        "edit": boolean;
         "labels": Array<any>;
         "task": any;
     }
@@ -219,6 +220,7 @@ declare namespace LocalJSX {
         "onModalClose"?: (event: CustomEvent<any>) => void;
     }
     interface TaskForm {
+        "edit"?: boolean;
         "labels"?: Array<any>;
         "onTaskCancelled"?: (event: CustomEvent<any>) => void;
         "onTaskChanged"?: (event: CustomEvent<any>) => void;

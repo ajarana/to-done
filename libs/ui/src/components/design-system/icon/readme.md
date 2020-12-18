@@ -23,6 +23,7 @@
  - [date-selector](../../date-selector)
  - [task-form](../../task-form)
  - [task-labels](../../task-labels)
+ - [task-list](../../task-list)
  - [td-date](../../td-date)
  - [td-header](../../td-header)
  - [td-task](../../td-task)
@@ -34,6 +35,7 @@ graph TD;
   date-selector --> tdn-ui-icon
   task-form --> tdn-ui-icon
   task-labels --> tdn-ui-icon
+  task-list --> tdn-ui-icon
   td-date --> tdn-ui-icon
   td-header --> tdn-ui-icon
   td-task --> tdn-ui-icon

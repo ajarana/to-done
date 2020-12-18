@@ -8,17 +8,15 @@
 
 tdn-ui-icon {
   --color: var(--color-green);
+  margin-right: 18px;
 }
+
+$breakpoint: 1200px;
 
 header {
   height: var(--td-header-height);
   border-bottom: 1px solid var(--color-neutral-50);
   background: var(--color-neutral-100);
-
-  .copy {
-    font-size: 16px;
-    margin: 0 0 0 18px;
-  }
 
   .container {
     margin: var(--gutter);
@@ -27,17 +25,47 @@ header {
     align-items: center;
   }
 
-  .right {
-    margin-left: auto;
+  .left {
+    display: flex;
+    align-items: center;
   }
 
-  ::slotted([slot=r-right-1]), ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
+  .right {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .left, .right {
+    flex: 0 1 350px;
+  }
+
+  .middle {
+    flex: 1;
+    text-align: center;
+  }
+
+  ::slotted([slot=r-left-1]), ::slotted([slot=r-middle-1]), ::slotted([slot=r-left-2]) {
+    font-weight: var(--medium-font-weight);
+    font-size: var(--m-font-size);
+  }
+
+  ::slotted([slot=r-left-1]), ::slotted([slot=r-middle-1]), ::slotted([slot=r-right-1]), ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
     display: none;
   }
 
-  @media (min-width: 592px) {
+  @media (min-width: $breakpoint) {
     ::slotted([slot=r-right-1]), ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
       display: flex;
+    }
+
+    ::slotted([slot=r-left-1]), ::slotted([slot=r-middle-1]) {
+      display: block;
+    }
+
+    ::slotted([slot=r-left-2]) {
+      display: none;
     }
 
     ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
@@ -47,6 +75,8 @@ header {
     .right {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
     }
   }
 }

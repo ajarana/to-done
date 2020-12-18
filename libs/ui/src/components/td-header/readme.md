@@ -24,6 +24,7 @@
 ### Used by
 
  - [task-form](../task-form)
+ - [task-list](../task-list)
  - [td-task-details](../td-task-details)
 
 ### Depends on
@@ -35,6 +36,7 @@
 graph TD;
   td-header --> tdn-ui-icon
   task-form --> td-header
+  task-list --> td-header
   td-task-details --> td-header
   style td-header fill:#f9f,stroke:#333,stroke-width:4px
 ```

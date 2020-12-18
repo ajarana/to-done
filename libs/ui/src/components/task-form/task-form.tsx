@@ -39,6 +39,8 @@ export class TaskForm {
 
   @State() dueDate: string = "";
 
+  @Prop() edit: boolean;
+
   @Prop() task: any;
 
   @Prop() labels: Array<any>;
@@ -248,7 +250,13 @@ export class TaskForm {
         <div>
           <tdn-ui-icon name="upload" />
 
-          <label class="section-heading file-upload-label" htmlFor="fileUpload">Click to upload</label>
+          <h3 class="section-heading">
+            <p>Click to upload</p>
+
+            <p>Drag and drop your files or click to upload</p>
+          </h3>
+
+          <label class="section-heading file-upload-label hidden" htmlFor="fileUpload">Click to upload</label>
 
           <input 
             id="fileUpload"
@@ -271,6 +279,21 @@ export class TaskForm {
         <td-header
           header-copy="Edit Task"
         >
+          <td-text
+            slot="r-left-1"
+            text="To Done"
+          ></td-text>
+
+          <td-text
+            slot="r-left-2"
+            text={this.edit ? "Edit Task" : "Add Task"}
+          ></td-text>
+
+          <td-text
+            slot="r-middle-1"
+            text={this.edit ? "Edit Task" : "Add Task"}
+          ></td-text>
+
           <td-button 
             slot="r-right-1"
             buttonText="Cancel"

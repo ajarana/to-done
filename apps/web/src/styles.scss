@@ -18,6 +18,7 @@
   --td-border-radius: 4px;
   --td-text-line-height: 22px;
   --td-header-height: 70px;
+  --td-breakpoint: 1000px;
 
   --gutter: 0 25px;
   --section-heading-font-size: var(--xs-font-size);
@@ -30,6 +31,10 @@
   --general-transition: all 0.2s ease-in-out;
 
   background: var(--color-neutral-90);
+
+  @media(min-width: 1000px) {
+    --gutter: 0 32px;
+  }
 }
 
 body {

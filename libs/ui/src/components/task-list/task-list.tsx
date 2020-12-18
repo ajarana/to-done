@@ -3,7 +3,8 @@ import {
   h, 
   Prop,
   Event,
-  EventEmitter
+  EventEmitter,
+  Host
 } from '@stencil/core';
 
 @Component({
@@ -75,20 +76,49 @@ export class TaskList {
     });
 
     return (
-      <div class="task-list-container">
-        {(tasks && tasks.length > 0)
-            ?
-            <ul class="task-list">
-              {tasks}
-            </ul>
-            :
-            <div>
-              <td-text
-                text="Nothing here, yet! Add a task to get started."
-              ></td-text>
-            </div>
-          }
-      </div>
+      <Host>
+        <td-header
+          header-copy="To Done"
+        >
+          <td-text
+            slot="r-left-1"
+            text="To Done"
+          ></td-text>
+
+          <td-text
+            slot="r-left-2"
+            text="To Done"
+          ></td-text>
+
+          <td-button
+            slot="right-1"
+            button-text="Add Task"
+            type="success-button"
+            icon-name="add"
+          >
+            <tdn-ui-icon
+              slot="icon"
+              name="add"
+              size="m"
+            ></tdn-ui-icon>
+          </td-button>
+        </td-header>
+
+        <div class="task-list-container">
+          {(tasks && tasks.length > 0)
+              ?
+              <ul class="task-list">
+                {tasks}
+              </ul>
+              :
+              <div>
+                <td-text
+                  text="Nothing here, yet! Add a task to get started."
+                ></td-text>
+              </div>
+            }
+        </div>
+      </Host>
     );
   }
 }

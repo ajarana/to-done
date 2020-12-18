@@ -61,7 +61,9 @@ export class DateSelector {
             <div>{month + 1}/{day}/{year}</div>
           }
           {(!this.date) &&
-            <div>Select a Date</div>
+            <td-text
+              text="Select a Date"
+            ></td-text>
           }
         </div>
 
