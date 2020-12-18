@@ -5,7 +5,7 @@
 section {
   margin-bottom: 24px;
 
-  > div {
+  > button {
     color: var(--color-neutral-10);
     font-size: var(--input-text-font-size);
     border: 1px solid var(--color-neutral-50);
@@ -15,6 +15,8 @@ section {
     max-width: 235px;
     display: flex;
     align-items: center;
+    background: white;
+    font-family: var(--app-font-family);
 
     tdn-ui-icon {
       color: var(--color-neutral-25);

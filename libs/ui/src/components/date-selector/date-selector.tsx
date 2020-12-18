@@ -52,7 +52,7 @@ export class DateSelector {
       <section class="task-form-section">
         <label class="section-heading">DUE DATE</label>
 
-        <div
+        <button
           onClick={() => this.toggleModal()}
         >
           <tdn-ui-icon name="calendar"></tdn-ui-icon>
@@ -65,7 +65,7 @@ export class DateSelector {
               text="Select a Date"
             ></td-text>
           }
-        </div>
+        </button>
 
         {(this.showModal) &&
           <task-date-modal

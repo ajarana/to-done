@@ -23,8 +23,6 @@ export class AppComponent implements OnInit {
 
     firebase.initializeApp(firebaseConfig);
 
-    this.authService.signIn();
-
     this.authService.initAuthStateListener();
   }
 }

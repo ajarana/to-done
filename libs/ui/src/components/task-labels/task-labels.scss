@@ -21,6 +21,16 @@ label {
   margin-bottom: 24px;
 }
 
+button {
+  background: transparent;
+  font-family: var(--app-font-family);
+}
+
+p {
+  margin: 0;
+  font-size: var(--xs-font-size);
+}
+
 @mixin subtract($property, $minuend, $subtrahend) {
   #{$property}: calc(#{$minuend} - #{$subtrahend});
 }
@@ -62,8 +72,8 @@ label {
     }
 
     &.selected {
-      font-weight: var(--medium-font-weight);
       color: white;
+      font-weight: var(--medium-font-weight);
 
       tdn-ui-icon {
         font-size: 9px;

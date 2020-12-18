@@ -58,7 +58,7 @@ export class TaskLabels {
       ]);
 
       return (
-        <li
+        <button
           class={labelClasses}
           onClick={() => this.selectLabels(id)}
           // Conditionally adds prop to object
@@ -69,10 +69,10 @@ export class TaskLabels {
             }
           }
         >
-          <div>{name}</div>
+          <p>{name}</p>
           
           <tdn-ui-icon name={(selected) ? "x" : "add"}></tdn-ui-icon>
-        </li>
+        </button>
       );
     });
 
@@ -82,9 +82,12 @@ export class TaskLabels {
       >
         <label class="section-heading">LABELS</label>
 
-        <ul class="labels">
+        {/* <ul class="labels">
           {selectedLabels}
-        </ul>
+        </ul> */}
+        <div class="labels">
+          {selectedLabels}
+        </div>
       </div>
     );
   }

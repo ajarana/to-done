@@ -34,4 +34,8 @@ export class AuthService {
       }
     });
   }
+
+  getUserId() {
+    return firebase.auth().currentUser;
+  }
 }

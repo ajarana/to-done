@@ -47,11 +47,11 @@ export class TaskDateModal {
     bubbles: true,
   }) dateSelection: EventEmitter;
 
-  handleClick(e: MouseEvent) {
+  handleClick(e: any) {
     e.preventDefault();
-
+    
     const validFullDate = this.validateFullDate();
-
+    console.log('oh no', validFullDate)
     if (validFullDate) {
       this.dateSelection.emit({
         year: parseInt(this.year, 10),
@@ -141,7 +141,9 @@ export class TaskDateModal {
 
   validateFullDate() {
     if (!this.isNumber(this.year) || !this.isNumber(this.month) || !this.isNumber(this.day)) {
-      return this.fullDateError = true;
+      this.fullDateError = true;
+
+      return false;
     }
 
     const year = parseInt(this.year, 10);
@@ -186,10 +188,21 @@ export class TaskDateModal {
           class="task-date-modal"
           onClick={e => e.stopPropagation()}
         >
-          <td-heading
-            type="h2"
-            headingText="Select a Date"
-          ></td-heading>
+          <header>
+            <td-heading
+              type="h2"
+              headingText="Select a Date"
+            ></td-heading>
+
+            <button
+              onClick={() => this.modalClose.emit()}
+            >
+              <tdn-ui-icon
+                name="x"
+                size="s"
+              ></tdn-ui-icon>
+            </button>
+          </header>
 
           <section class={dateInputClasses}>
             <div class="month">

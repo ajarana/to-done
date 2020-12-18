@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Task } from './../task';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,15 @@ export class TaskService {
 
   tasks: Task[] = [];
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   async getTasks() {
+    const userId = this.authService.getUserId().uid;
+
     const querySnapshot = await this.db.collection("tasks")
+    .where("userId", "==", userId)
     .orderBy("createdAt")
     .get();
 
@@ -32,7 +38,10 @@ export class TaskService {
   async addTask(fields) {
     const ref = this.db.collection("tasks").doc();
 
+    const userId = this.authService.getUserId().uid;
+
     const data = Object.assign(fields, { 
+      userId,
       id: ref.id,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       complete: false

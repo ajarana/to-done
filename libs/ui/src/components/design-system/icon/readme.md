@@ -21,6 +21,7 @@
 ### Used by
 
  - [date-selector](../../date-selector)
+ - [task-date-modal](../../task-date-modal)
  - [task-form](../../task-form)
  - [task-labels](../../task-labels)
  - [task-list](../../task-list)
@@ -33,6 +34,7 @@
 ```mermaid
 graph TD;
   date-selector --> tdn-ui-icon
+  task-date-modal --> tdn-ui-icon
   task-form --> tdn-ui-icon
   task-labels --> tdn-ui-icon
   task-list --> tdn-ui-icon

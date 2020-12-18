@@ -51,6 +51,7 @@ graph TD;
   date-selector --> td-text
   date-selector --> task-date-modal
   task-date-modal --> td-heading
+  task-date-modal --> tdn-ui-icon
   task-date-modal --> td-button
   style task-form fill:#f9f,stroke:#333,stroke-width:4px
 ```

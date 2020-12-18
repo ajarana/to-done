@@ -53,6 +53,7 @@ export class TdTaskDetails {
       onError={() => {
         this.thumbnailError = true;
       }}
+      alt="Thumbnail for a task."
     />
     :
     <div class="placeholder-thumbnail">

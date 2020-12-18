@@ -48,10 +48,13 @@ p {
   color: var(--color-neutral-10);
 }
 
+textarea, input {
+  font-family: var(--app-font-family);
+}
+
 textarea {
   resize: none;
   height: 95px;
-  font-family: var(--app-font-family);
   display: block;
 }
 
@@ -209,6 +212,7 @@ $max-width: 592px;
 }
 
 #fileUpload {
+  // For screen readers; display: none and visibility: hidden are bad for accessibility
   opacity: 0;
   position: absolute;
   height: 100%;

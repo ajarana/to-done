@@ -29,12 +29,14 @@
 ### Depends on
 
 - [td-heading](../td-heading)
+- [tdn-ui-icon](../design-system/icon)
 - [td-button](../td-button)
 
 ### Graph
 ```mermaid
 graph TD;
   task-date-modal --> td-heading
+  task-date-modal --> tdn-ui-icon
   task-date-modal --> td-button
   date-selector --> task-date-modal
   style task-date-modal fill:#f9f,stroke:#333,stroke-width:4px
