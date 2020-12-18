@@ -6,7 +6,8 @@ import {
   Event, 
   EventEmitter,
   Listen,
-  Watch
+  Watch,
+  Host
 } 
 from '@stencil/core';
 
@@ -266,86 +267,18 @@ export class TaskForm {
     const taskId = this.task && this.task.id;
 
     return (
-      <main>
-        <form class="task-form">
-          <section
-            class={taskNameWrapperClasses}
-          >
-            <label class="section-heading" htmlFor="taskName">TASK NAME*</label>
-
-            <input 
-              id="taskName"
-              value={this.taskName}
-              onInput={e => this.handleTaskName(e)}
-              onBlur={() => this.validateTaskName()}
-              placeholder="e.g. Turn work in on time"
-              maxlength={50}
-            />
-
-            {(this.taskNameError) &&
-              <p>Please enter a valid name</p>
-            }
-          </section>
-
-          <section
-            class="task-form-section"
-          >
-            <h3 class="section-heading">THUMBNAIL</h3>
-
-            <div 
-              class={fancyUploadClasses}
-            >
-              {FancyUploadContents}
-            </div>
-          </section>
-
-          <section
-            class="task-form-section"
-          >
-            <label class="section-heading" htmlFor="description">DESCRIPTION</label>
-            <textarea 
-              id="description"
-              value={this.description}
-              onInput={e => this.handleDescription(e)}
-              spellcheck={false}
-              maxLength={100}
-              placeholder="e.g. Todo app completion"
-            />
-          </section>
-
-          <task-labels
-            labels={this.labels}
-            selectedLabelIds={this.labelsSelected}
-          ></task-labels>
-
-          <date-selector
-            date={this.dueDate}
-          ></date-selector>
-
-          <section
-            class="task-form-section"
-          >
-            <label class="section-heading" htmlFor="notes">NOTES</label>
-            <textarea 
-              id="notes"
-              value={this.notes}
-              onInput={e => this.handleNotes(e)}
-              spellcheck={false}
-              maxLength={100}
-              placeholder="e.g. Make sure you're familiar with the tools"
-            />
-          </section>
-        </form>
-
-        <td-footer>
+      <Host>
+        <td-header
+          header-copy="Edit Task"
+        >
           <td-button 
-            slot="left-1"
+            slot="r-right-1"
             buttonText="Cancel"
             handler={() => this.taskCancelled.emit()}
           ></td-button>
 
           <td-button 
-            slot="right-1"
+            slot="r-right-2"
             buttonText="Delete"
             type="danger-button"
             handler={() => this.taskDeleted.emit({
@@ -354,7 +287,7 @@ export class TaskForm {
           ></td-button>
 
           <td-button 
-            slot="right-2"
+            slot="r-right-3"
             buttonText="Save"
             type="success-button"
             handler={e => {
@@ -371,8 +304,116 @@ export class TaskForm {
               });
             }}
           ></td-button>
-        </td-footer>
-      </main>
+        </td-header>
+
+        <main>
+          <form class="task-form">
+            <section
+              class={taskNameWrapperClasses}
+            >
+              <label class="section-heading" htmlFor="taskName">TASK NAME*</label>
+
+              <input 
+                id="taskName"
+                value={this.taskName}
+                onInput={e => this.handleTaskName(e)}
+                onBlur={() => this.validateTaskName()}
+                placeholder="e.g. Turn work in on time"
+                maxlength={50}
+              />
+
+              {(this.taskNameError) &&
+                <p>Please enter a valid name</p>
+              }
+            </section>
+
+            <section
+              class="task-form-section"
+            >
+              <h3 class="section-heading">THUMBNAIL</h3>
+
+              <div 
+                class={fancyUploadClasses}
+              >
+                {FancyUploadContents}
+              </div>
+            </section>
+
+            <section
+              class="task-form-section"
+            >
+              <label class="section-heading" htmlFor="description">DESCRIPTION</label>
+              <textarea 
+                id="description"
+                value={this.description}
+                onInput={e => this.handleDescription(e)}
+                spellcheck={false}
+                maxLength={100}
+                placeholder="e.g. Todo app completion"
+              />
+            </section>
+
+            <task-labels
+              labels={this.labels}
+              selectedLabelIds={this.labelsSelected}
+            ></task-labels>
+
+            <date-selector
+              date={this.dueDate}
+            ></date-selector>
+
+            <section
+              class="task-form-section"
+            >
+              <label class="section-heading" htmlFor="notes">NOTES</label>
+              <textarea 
+                id="notes"
+                value={this.notes}
+                onInput={e => this.handleNotes(e)}
+                spellcheck={false}
+                maxLength={100}
+                placeholder="e.g. Make sure you're familiar with the tools"
+              />
+            </section>
+          </form>
+
+          <td-footer>
+            <td-button 
+              slot="r-left-1"
+              buttonText="Cancel"
+              handler={() => this.taskCancelled.emit()}
+            ></td-button>
+
+            <td-button 
+              slot="r-right-1"
+              buttonText="Delete"
+              type="danger-button"
+              handler={() => this.taskDeleted.emit({
+                ...(taskId && {id: taskId}) 
+              })}
+            ></td-button>
+
+            <td-button 
+              slot="r-right-2"
+              buttonText="Save"
+              type="success-button"
+              handler={e => {
+                e.preventDefault();
+
+                this.taskChanged.emit({
+                  ...(taskId && {id: taskId}),
+                  name: this.taskName,
+                  thumbnail: this.file,
+                  labels: this.labelsSelected,
+                  description: this.description,
+                  dueDate: this.dueDate,
+                  notes: this.notes
+                });
+              }}
+            ></td-button>
+          </td-footer>
+        </main>
+      </Host>
     );
   }
 }

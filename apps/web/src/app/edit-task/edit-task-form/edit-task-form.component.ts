@@ -28,10 +28,15 @@ export class EditTaskFormComponent implements OnInit {
   ) { }
 
   @HostListener('taskChanged', ['$event'])
-  taskChangedHandler(event: any) {
+  async taskChangedHandler(event: any) {
     const formFields = event.detail;
 
-    this.upload(formFields);
+    await this.upload(formFields);
+
+    //TODO: need listener....
+    await this.taskService.getTasks();
+
+    this.router.navigate(['/tasks']);
   }
 
   @HostListener('taskDeleted', ['$event'])

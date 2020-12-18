@@ -16,6 +16,14 @@ main {
     position: sticky;
     bottom: 0;
   }
+
+  @media (min-width: 592px) {
+    height: 136px;
+
+    td-footer {
+      display: none;
+    }
+  }
 }
 
 td-heading {
@@ -34,11 +42,20 @@ td-labels {
   padding: var(--gutter);
   padding-top: 25px;
   padding-bottom: 25px;
+  width: 100%;
+  max-width: 592px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--td-border-radius);
 
   > section {
     &:not(:last-child) {
       margin-bottom: 24px;
     }
+  }
+
+  @media (min-width: 592px) {
+    margin-top: 48px;
   }
 }
 
@@ -54,6 +71,10 @@ td-labels {
     font-size: 18px;
     margin: auto 0 0 auto;
   }
+
+  @media (min-width: 592px) {
+    height: 136px;
+  }
 }
 
 .thumbnail {
@@ -64,5 +85,11 @@ td-labels {
     width: 100%;
     object-fit: cover;
     border-radius: var(--td-border-radius);
+  }
+
+  @media (min-width: 592px) {
+    img {
+      height: 136px;
+    }
   }
 }

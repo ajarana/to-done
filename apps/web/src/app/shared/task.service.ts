@@ -9,6 +9,8 @@ import { Task } from './../task';
 export class TaskService {
   db = firebase.firestore();
 
+  tasks: Task[] = [];
+
   constructor() { }
 
   async getTasks() {
@@ -56,16 +58,6 @@ export class TaskService {
     .delete();
 
     console.log("Task deleted!");
-  }
-
-  async toggleComplete(id: string, complete: boolean) {
-    const ref = this.db.collection("tasks").doc(id);
-
-    await ref.set({ complete }, { merge: true });
-
-    console.log("Toggle complete!", complete);
-
-    return complete;
   }
 
 }

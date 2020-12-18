@@ -42,7 +42,6 @@ export namespace Components {
         "last": string;
     }
     interface TdHeader {
-        "copy": string;
         "headerCopy": string;
     }
     interface TdHeading {
@@ -60,12 +59,12 @@ export namespace Components {
         "thumbnailUrl": string;
     }
     interface TdTaskDetails {
-        "complete": boolean;
         "labels": Array<any>;
         "task": any;
     }
     interface TdText {
         "text": string;
+        "type": string;
     }
     interface TdnUiIcon {
         /**
@@ -256,7 +255,6 @@ declare namespace LocalJSX {
         "last"?: string;
     }
     interface TdHeader {
-        "copy"?: string;
         "headerCopy"?: string;
         "onHeaderClicked"?: (event: CustomEvent<any>) => void;
     }
@@ -275,7 +273,6 @@ declare namespace LocalJSX {
         "thumbnailUrl"?: string;
     }
     interface TdTaskDetails {
-        "complete"?: boolean;
         "labels"?: Array<any>;
         "onTaskEdit"?: (event: CustomEvent<any>) => void;
         "onTaskMarkedComplete"?: (event: CustomEvent<any>) => void;
@@ -283,6 +280,7 @@ declare namespace LocalJSX {
     }
     interface TdText {
         "text"?: string;
+        "type"?: string;
     }
     interface TdnUiIcon {
         /**

@@ -13,7 +13,6 @@ import {
 })
 export class TdHeader {
   @Prop() headerCopy: string = "";
-  @Prop() copy: string = "";
 
   @Event({
     eventName: 'headerClicked',
@@ -41,7 +40,13 @@ export class TdHeader {
           </p>
 
           <section class="right">
-            <slot />
+            <slot name="right-1" />
+
+            <slot name="r-right-1" />
+
+            <slot name="r-right-2" />
+
+            <slot name="r-right-3" />
           </section>
         </div>
       </header>

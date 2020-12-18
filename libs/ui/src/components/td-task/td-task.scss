@@ -54,7 +54,6 @@ header {
 
 ::slotted([slot=task-description]) {
   line-height: var(--td-text-line-height);
-  color: var(--color-neutral-25);
   font-size: var(--s-font-size);
   margin-top: 0;
   margin-bottom: 12px;

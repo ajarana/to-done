@@ -18,6 +18,12 @@ main {
   td-footer {
     margin-top: auto;
   }
+
+  @media(min-width: 592px) {
+    td-footer {
+      display: none;
+    }
+  }
 }
 
 label {

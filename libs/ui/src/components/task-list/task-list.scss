@@ -20,16 +20,28 @@ h2 {
   margin-top: 12px;
   margin-bottom: 12px;
 
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-auto-columns: 1fr;
+  grid-gap: 20px;
+
   > li {
     padding: 16px;
     box-shadow: var(--fancy-box-shadow);
     border: 1px solid var(--color-neutral-50);
     border-radius: var(--td-border-radius);
+    width: 100%;
+    max-width: 350px;
     height: 275px;
-  
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
+  }
+
+  @media (min-width: 500px) {
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-gap: 30px;
+    margin-top: 48px;
+    margin-bottom: 48px;
   }
 }
 
@@ -39,16 +51,18 @@ img {
 }
 
 .task-list-container {
-  min-height: calc(100vh - var(--td-header-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  > div {
+    min-height: calc(100vh - var(--td-header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-td-text {
-  margin: var(--gutter);
-  text-align: center;
-}
+// td-text {
+  // margin: var(--gutter);
+  // text-align: center;
+// }
 
 td-header {
   tdn-ui-icon {

@@ -30,4 +30,23 @@ header {
   .right {
     margin-left: auto;
   }
+
+  ::slotted([slot=r-right-1]), ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
+    display: none;
+  }
+
+  @media (min-width: 592px) {
+    ::slotted([slot=r-right-1]), ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
+      display: flex;
+    }
+
+    ::slotted([slot=r-right-2]), ::slotted([slot=r-right-3]) {
+      margin-left: 16px;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

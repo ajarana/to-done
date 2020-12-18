@@ -59,6 +59,7 @@ export class TaskList {
               <td-text
                 slot="task-description"
                 text={description}
+                type="secondary"
               ></td-text>
             }
 

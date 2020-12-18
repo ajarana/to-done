@@ -10,6 +10,7 @@
 | Property | Attribute | Description | Type     | Default |
 | -------- | --------- | ----------- | -------- | ------- |
 | `text`   | `text`    |             | `string` | `""`    |
+| `type`   | `type`    |             | `string` | `""`    |
 
 
 ## Dependencies

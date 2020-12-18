@@ -16,15 +16,15 @@ export class TdFooter {
     return (
       <footer>
         <section>
-          <slot name="left-1" />
+          <slot name="r-left-1" />
 
-          <slot name="left-2" />
+          <slot name="r-left-2" />
         </section>
 
         <section>
-          <slot name="right-1" />
+          <slot name="r-right-1" />
 
-          <slot name="right-2" />
+          <slot name="r-right-2" />
         </section>
       </footer>
     );

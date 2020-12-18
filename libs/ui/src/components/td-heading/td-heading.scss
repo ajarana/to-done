@@ -8,7 +8,9 @@ h2 {
   color: var(--color-neutral-10);
   margin: 0;
 
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }

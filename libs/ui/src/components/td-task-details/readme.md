@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `complete` | `complete` |             | `boolean` | `undefined` |
-| `labels`   | --         |             | `any[]`   | `[]`        |
-| `task`     | `task`     |             | `any`     | `{}`        |
+| Property | Attribute | Description | Type    | Default |
+| -------- | --------- | ----------- | ------- | ------- |
+| `labels` | --        |             | `any[]` | `[]`    |
+| `task`   | `task`    |             | `any`   | `{}`    |
 
 
 ## Events
@@ -27,9 +26,10 @@
 ### Depends on
 
 - [tdn-ui-icon](../design-system/icon)
+- [td-header](../td-header)
+- [td-button](../td-button)
 - [td-heading](../td-heading)
 - [td-text](../td-text)
-- [td-button](../td-button)
 - [td-labels](../td-labels)
 - [td-date](../td-date)
 - [td-footer](../td-footer)
@@ -38,12 +38,14 @@
 ```mermaid
 graph TD;
   td-task-details --> tdn-ui-icon
+  td-task-details --> td-header
+  td-task-details --> td-button
   td-task-details --> td-heading
   td-task-details --> td-text
-  td-task-details --> td-button
   td-task-details --> td-labels
   td-task-details --> td-date
   td-task-details --> td-footer
+  td-header --> tdn-ui-icon
   td-labels --> td-label
   td-date --> tdn-ui-icon
   style td-task-details fill:#f9f,stroke:#333,stroke-width:4px

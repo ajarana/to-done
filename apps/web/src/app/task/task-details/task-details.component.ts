@@ -12,7 +12,6 @@ import { Label } from './../../label';
 })
 export class TaskDetailsComponent implements OnInit {
   task: Task;
-  complete: boolean;
   labels: Label[] = [];
   headerCopy: string = "";
 
@@ -38,9 +37,9 @@ export class TaskDetailsComponent implements OnInit {
       id,
       data
     } = event.detail;    
-      const complete = await this.taskService.toggleComplete(id, data.complete);
+      await this.taskService.setTask(id, data);
 
-      this.complete = complete;
+      this.task = await this.taskService.getTask(id);
   }
 
   async ngOnInit(): Promise<void> {
@@ -55,12 +54,10 @@ export class TaskDetailsComponent implements OnInit {
     ]);
 
     const {
-      name,
-      complete
+      name
     } = task;
 
     this.headerCopy = name;
-    this.complete = complete;
     this.task = task;
     this.labels = labels;
   }

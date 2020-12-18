@@ -28,6 +28,7 @@
 
 - [td-button](../td-button)
 - [tdn-ui-icon](../design-system/icon)
+- [td-header](../td-header)
 - [task-labels](../task-labels)
 - [date-selector](../date-selector)
 - [td-footer](../td-footer)
@@ -37,9 +38,11 @@
 graph TD;
   task-form --> td-button
   task-form --> tdn-ui-icon
+  task-form --> td-header
   task-form --> task-labels
   task-form --> date-selector
   task-form --> td-footer
+  td-header --> tdn-ui-icon
   task-labels --> tdn-ui-icon
   date-selector --> tdn-ui-icon
   date-selector --> task-date-modal

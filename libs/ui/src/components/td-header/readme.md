@@ -9,7 +9,6 @@
 
 | Property     | Attribute     | Description | Type     | Default |
 | ------------ | ------------- | ----------- | -------- | ------- |
-| `copy`       | `copy`        |             | `string` | `""`    |
 | `headerCopy` | `header-copy` |             | `string` | `""`    |
 
 
@@ -22,6 +21,11 @@
 
 ## Dependencies
 
+### Used by
+
+ - [task-form](../task-form)
+ - [td-task-details](../td-task-details)
+
 ### Depends on
 
 - [tdn-ui-icon](../design-system/icon)
@@ -30,6 +34,8 @@
 ```mermaid
 graph TD;
   td-header --> tdn-ui-icon
+  task-form --> td-header
+  td-task-details --> td-header
   style td-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
