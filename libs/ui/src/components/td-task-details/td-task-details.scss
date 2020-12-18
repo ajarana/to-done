@@ -20,8 +20,6 @@ main {
   }
 
   @media (min-width: $breakpoint) {
-    height: 136px;
-
     td-footer {
       display: none;
     }
@@ -62,6 +60,7 @@ td-labels {
 
   @media (min-width: $breakpoint) {
     margin-top: 48px;
+    margin-bottom: 48px;
     padding: 56px;
   }
 }

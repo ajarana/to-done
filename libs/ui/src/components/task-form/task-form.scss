@@ -13,10 +13,6 @@ main {
   flex-direction: column;
   min-height: calc(100vh - var(--td-header-height));
 
-  .task-form {
-    margin-bottom: 7px;
-  }
-
   td-footer {
     margin-top: auto;
   }
@@ -66,6 +62,7 @@ $max-width: 592px;
 
 .task-form {
   margin-top: 11px;
+  margin-bottom: 7px;
   padding: 25px;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -124,6 +121,7 @@ $max-width: 592px;
 
   @media (min-width: $breakpoint) {
     margin-top: 48px;
+    margin-bottom: 48px;
     padding: 56px;
   }
 }
