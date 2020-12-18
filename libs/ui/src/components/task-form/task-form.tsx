@@ -316,15 +316,17 @@ export class TaskForm {
             handler={e => {
               e.preventDefault();
 
-              this.taskChanged.emit({
-                ...(taskId && {id: taskId}),
-                name: this.taskName,
-                thumbnail: this.file,
-                labels: this.labelsSelected,
-                description: this.description,
-                dueDate: this.dueDate,
-                notes: this.notes
-              });
+              if (this.taskName) {
+                this.taskChanged.emit({
+                  ...(taskId && {id: taskId}),
+                  name: this.taskName,
+                  thumbnail: this.file,
+                  labels: this.labelsSelected,
+                  description: this.description,
+                  dueDate: this.dueDate,
+                  notes: this.notes
+                });
+              }
             }}
           ></td-button>
         </td-header>
@@ -425,15 +427,17 @@ export class TaskForm {
               handler={e => {
                 e.preventDefault();
 
-                this.taskChanged.emit({
-                  ...(taskId && {id: taskId}),
-                  name: this.taskName,
-                  thumbnail: this.file,
-                  labels: this.labelsSelected,
-                  description: this.description,
-                  dueDate: this.dueDate,
-                  notes: this.notes
-                });
+                if (this.taskName) {
+                  this.taskChanged.emit({
+                    ...(taskId && {id: taskId}),
+                    name: this.taskName,
+                    thumbnail: this.file,
+                    labels: this.labelsSelected,
+                    description: this.description,
+                    dueDate: this.dueDate,
+                    notes: this.notes
+                  });
+                }
               }}
             ></td-button>
           </td-footer>

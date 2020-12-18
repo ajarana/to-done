@@ -16,7 +16,6 @@ h2 {
 }
 
 .task-list {
-  margin: var(--gutter);
   margin-top: 12px;
   margin-bottom: 12px;
 
@@ -25,6 +24,9 @@ h2 {
   justify-items: center;
   grid-auto-columns: 1fr;
   grid-gap: 20px;
+  max-width: 1110px;
+  margin-left: auto;
+  margin-right: auto;
 
   > li {
     padding: 16px;
@@ -52,6 +54,8 @@ img {
 }
 
 .task-list-container {
+  padding: var(--gutter);
+
   > div {
     min-height: calc(100vh - var(--td-header-height));
     display: flex;
@@ -59,11 +63,6 @@ img {
     justify-content: center;
   }
 }
-
-// td-text {
-  // margin: var(--gutter);
-  // text-align: center;
-// }
 
 td-header {
   tdn-ui-icon {
