@@ -53,9 +53,10 @@ export class DateSelector {
         <label class="section-heading">DUE DATE</label>
 
         <button
+          type="button"
           onClick={() => this.toggleModal()}
         >
-          <tdn-ui-icon name="calendar"></tdn-ui-icon>
+          <tdn-ui-icon name="calendar" lazy={true}></tdn-ui-icon>
 
           {(this.date) && 
             <div>{month + 1}/{day}/{year}</div>

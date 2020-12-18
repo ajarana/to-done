@@ -87,6 +87,7 @@ export class TaskLabelModal {
           class="task-label-modal"
         >
           <button
+            type="button"
             onClick={e => this.handleClick(e)}
           >Select labels</button>
 

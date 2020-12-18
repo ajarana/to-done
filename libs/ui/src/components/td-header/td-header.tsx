@@ -15,32 +15,32 @@ export class TdHeader {
   @Prop() headerCopy: string = "";
 
   @Event({
-    eventName: 'headerClicked',
+    eventName: 'goHome',
     composed: true,
     cancelable: true,
     bubbles: true,
-  }) headerClicked: EventEmitter;
+  }) goHome: EventEmitter;
 
   render() {
     return (
       <header>
         <div 
           class="container"
-          onClick={() => {
-            this.headerClicked.emit();
-          }}
         >
           <section class="left">
             <tdn-ui-icon 
               name="logo"
               size="xl"
+              lazy={true}
             ></tdn-ui-icon>
 
-            {/* <p class="copy">
-              {this.headerCopy}
-            </p> */}
-
-            <slot name="r-left-1" />
+            <div
+              onClick={() => this.goHome.emit()}
+            >
+              <slot 
+                name="r-left-1" 
+              />
+            </div>
 
             <slot name="r-left-2" />
           </section>

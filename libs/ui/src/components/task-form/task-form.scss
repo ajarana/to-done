@@ -50,6 +50,9 @@ p {
 
 textarea, input {
   font-family: var(--app-font-family);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 textarea {
@@ -217,6 +220,7 @@ $max-width: 592px;
   position: absolute;
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 
 .section-heading {

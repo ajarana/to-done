@@ -59,6 +59,7 @@ export class TaskLabels {
 
       return (
         <button
+          type="button"
           class={labelClasses}
           onClick={() => this.selectLabels(id)}
           // Conditionally adds prop to object
@@ -71,7 +72,7 @@ export class TaskLabels {
         >
           <p>{name}</p>
           
-          <tdn-ui-icon name={(selected) ? "x" : "add"}></tdn-ui-icon>
+          <tdn-ui-icon name={(selected) ? "x" : "add"} lazy={true}></tdn-ui-icon>
         </button>
       );
     });

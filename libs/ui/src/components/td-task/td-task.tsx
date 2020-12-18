@@ -28,7 +28,7 @@ export class TdTask {
     />
     :
     <div class="placeholder-thumbnail">
-      <tdn-ui-icon name="image"></tdn-ui-icon>
+      <tdn-ui-icon name="image" lazy={true}></tdn-ui-icon>
     </div>;
 
     return (

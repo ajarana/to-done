@@ -37,6 +37,7 @@ export class TdDate {
             name="calendar"
             size="m"
             color="app-text-secondary"
+            lazy={true}
           ></tdn-ui-icon>
 
           <p>{month + 1}/{day}/{year}</p>

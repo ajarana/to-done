@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event           | Description | Type               |
-| --------------- | ----------- | ------------------ |
-| `headerClicked` |             | `CustomEvent<any>` |
+| Event    | Description | Type               |
+| -------- | ----------- | ------------------ |
+| `goHome` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

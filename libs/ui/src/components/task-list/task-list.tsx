@@ -100,6 +100,7 @@ export class TaskList {
               slot="icon"
               name="add"
               size="m"
+              lazy={true}
             ></tdn-ui-icon>
           </td-button>
         </td-header>

@@ -29,6 +29,7 @@ button {
 p {
   margin: 0;
   font-size: var(--xs-font-size);
+  line-height: 1;
 }
 
 @mixin subtract($property, $minuend, $subtrahend) {
@@ -65,6 +66,7 @@ p {
     align-items: center;
     font-weight: var(--regular-font-weight);
     margin-top: 8px;
+    cursor: pointer;
 
     tdn-ui-icon {
       margin-left: 11px;

@@ -45,6 +45,7 @@ export class TdButton {
 
     return (
       <button
+        type="button"
         class={classes}
         onClick={e => this.onClickHandler(e)}
       >

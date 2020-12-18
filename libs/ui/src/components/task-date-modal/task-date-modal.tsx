@@ -51,7 +51,7 @@ export class TaskDateModal {
     e.preventDefault();
     
     const validFullDate = this.validateFullDate();
-    console.log('oh no', validFullDate)
+
     if (validFullDate) {
       this.dateSelection.emit({
         year: parseInt(this.year, 10),
@@ -195,11 +195,13 @@ export class TaskDateModal {
             ></td-heading>
 
             <button
+              type="button"
               onClick={() => this.modalClose.emit()}
             >
               <tdn-ui-icon
                 name="x"
                 size="s"
+                lazy={true}
               ></tdn-ui-icon>
             </button>
           </header>

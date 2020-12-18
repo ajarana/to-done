@@ -57,7 +57,7 @@ export class TdTaskDetails {
     />
     :
     <div class="placeholder-thumbnail">
-      <tdn-ui-icon name="image"></tdn-ui-icon>
+      <tdn-ui-icon name="image" lazy={true}></tdn-ui-icon>
     </div>;
 
     // TODO: Figure out why this solution worked for the footer but not the header.

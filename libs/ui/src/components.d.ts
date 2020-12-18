@@ -258,7 +258,7 @@ declare namespace LocalJSX {
     }
     interface TdHeader {
         "headerCopy"?: string;
-        "onHeaderClicked"?: (event: CustomEvent<any>) => void;
+        "onGoHome"?: (event: CustomEvent<any>) => void;
     }
     interface TdHeading {
         "headingText"?: string;

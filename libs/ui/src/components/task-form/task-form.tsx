@@ -248,7 +248,7 @@ export class TaskForm {
     else {
       FancyUploadContents = (
         <div>
-          <tdn-ui-icon name="upload" />
+          <tdn-ui-icon name="upload" lazy={true} />
 
           <h3 class="section-heading">
             <p>Click to upload</p>
